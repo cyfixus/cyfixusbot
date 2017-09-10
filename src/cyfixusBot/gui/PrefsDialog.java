@@ -48,7 +48,7 @@ public class PrefsDialog extends JDialog{
 		cancelButton = new CyButton("Cancel");
 				
 		channelField = new JTextField(10);
-		oauthField = new JPasswordField(10);
+		oauthField = new JPasswordField(100);
 		
 		layoutControls();
 		
