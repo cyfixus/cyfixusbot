@@ -28,6 +28,7 @@ import cyfixusBot.gui.components.CyLabel;
 
 public class PrefsDialog extends JDialog{
 	
+	private CyButton showButton;
 	private CyButton connectButton;
 	private CyButton okButton;
 	private CyButton cancelButton;
@@ -43,14 +44,30 @@ public class PrefsDialog extends JDialog{
 	public PrefsDialog(MainFrame mainFrame){
 		super(mainFrame, "connection", false);
 		this.mainFame = mainFrame;
+		showButton = new CyButton("show");
 		connectButton = new CyButton("connect");
 		okButton = new CyButton("OK");
 		cancelButton = new CyButton("Cancel");
 				
 		channelField = new JTextField(10);
-		oauthField = new JPasswordField(100);
+		oauthField = new JPasswordField(10);
 		
 		layoutControls();
+		
+		showButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if(showButton.getText() == "show"){
+					oauthField.setEchoChar((char)0);
+					showButton.setText("hide");
+				}
+				else{
+					oauthField.setEchoChar('*');
+					showButton.setText("show");
+				}
+				
+			}
+		});
 		
 		connectButton.addActionListener(new ActionListener(){
 			@Override
@@ -148,6 +165,7 @@ public class PrefsDialog extends JDialog{
 
 		//  buttons panel
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		buttonsPanel.add(showButton);
 		buttonsPanel.add(connectButton);
 		buttonsPanel.add(okButton);
 		buttonsPanel.add(cancelButton);
