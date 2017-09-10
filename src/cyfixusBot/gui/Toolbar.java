@@ -6,9 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.Map;
+import java.util.prefs.Preferences;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import cyfixusBot.gui.components.CyButton;
@@ -18,26 +20,33 @@ import cyfixusBot.util.StringListener;
 public class Toolbar extends JPanel implements ActionListener{
 	private CyButton autoJoin;
 	private CyButton getUsers;
+	private CyButton prefButton;
+	private PrefsDialog prefsDialog;
 	private Font font;
-	
+
 	private StringListener textListener;
 	private CyButtonListener cyButtonListener;
 	
-	public Toolbar(){
+	public Toolbar(PrefsDialog prefsDialog){
+		this.prefsDialog = prefsDialog;
 		setBackground(new Color(3));
 		setBorder(BorderFactory.createEtchedBorder());
 		setFont();
 	
 		autoJoin = new CyButton("Auto Join");
 		getUsers = new CyButton("Get Users");
+		prefButton = new CyButton("p");
+
 		
 		autoJoin.addActionListener(this);
 		getUsers.addActionListener(this);
+		prefButton.addActionListener(this);
 		
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		add(autoJoin);
 		add(getUsers);
+		add(prefButton);
 	  
     }
 	
@@ -67,6 +76,9 @@ public class Toolbar extends JPanel implements ActionListener{
         	if(cyButtonListener != null){
         		cyButtonListener.cyButtonClicked("getusers");
         	}
+        }
+        else if(clicked == prefButton){
+        	prefsDialog.setVisible(true);
         }
 	}
 	

@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import cyfixusBot.bot.CyfixusBot;
 import cyfixusBot.events.FormEvent;
 import cyfixusBot.gui.components.CyButton;
 import cyfixusBot.gui.components.CyClassCategory;
@@ -73,12 +72,10 @@ public class FormPanel extends JPanel {
 	private FormListener formListener;
 	private CyList classList;
 	private CyCombo classCombo;
-	private CyfixusBot bot;
 
 	
-    public FormPanel(CyfixusBot bot){
+    public FormPanel(){
     	setBackground(new Color(3));
-    	this.bot = bot;
     	Dimension dim = getPreferredSize();
     	dim.width = 410;
     	setPreferredSize(dim);

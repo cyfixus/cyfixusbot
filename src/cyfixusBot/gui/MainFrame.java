@@ -1,10 +1,15 @@
 package cyfixusBot.gui;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.prefs.Preferences;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingWorker;
+
+import org.jibble.pircbot.IrcException;
+import org.jibble.pircbot.NickAlreadyInUseException;
 
 import cyfixusBot.bot.CyfixusBot;
 import cyfixusBot.events.FormEvent;
@@ -25,15 +30,31 @@ public class MainFrame extends JFrame{
 	private String classString;
 	private FormListener formListener;
 	private Player player;
-	
+	private PrefsDialog prefsDialog;
+	private Preferences prefs;
 
-	public MainFrame(CyfixusBot bot){
+	public MainFrame(){
 		 super("cyfixusbot");
-		 this.bot = bot;
+		 prefsDialog = new PrefsDialog(this);
+		 prefs = Preferences.userRoot().node("db");
+		 prefsDialog.setPrefsListener(new PrefsListener() {
+
+			@Override
+			public void preferencesSet(String channel, String oauth) {
+				prefs.put("channel", channel);
+				prefs.put("oauth", oauth);
+			}
+			 
+		 });
+		 try {
+			init();
+		} catch (Exception e) {
+			System.out.println("can't connect");
+		}
 		 setLayout(new BorderLayout());     
 		 textPanel = new TextPanel();
-		 toolbar = new Toolbar();
-		 formPanel = new FormPanel(bot);
+		 toolbar = new Toolbar(prefsDialog);
+		 formPanel = new FormPanel();
 		 initBot();
 		 initToolbar();
 		 initFormListener();
@@ -45,11 +66,28 @@ public class MainFrame extends JFrame{
 		 
 		 setSize(410, 600);
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-         setLocation(3190, 0);
          setAlwaysOnTop(true);
 	}
 	
-	public void initBot(){
+	
+    private void init() throws Exception{
+    	String oauth = prefs.get("oauth", "");
+		String channel = prefs.get("channel", "");
+		prefsDialog.setDefaults(channel, oauth);
+		stageBot(channel, oauth);
+    }
+    
+    protected void stageBot(String channel, String oauth) throws NickAlreadyInUseException, IOException, IrcException{
+    	String oauthIn = "oauth:" + oauth;
+    	bot = new CyfixusBot();
+        bot.setVerbose(true);
+    	bot.disconnect();
+        bot.connect("irc.chat.twitch.tv", 6667, oauthIn);
+        bot.sendRawLineViaQueue("CAP REQ :twitch.tv/membership");
+        bot.joinChannel("#" + channel);
+    }
+	
+	private void initBot(){
 		bot.addStringListener(new StringListener(){
 			
 			public void textEmitted(String text){
