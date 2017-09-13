@@ -11,12 +11,32 @@ public class Users {
 		
 	}
 	
+	public void setPlayers(LinkedList<Player> players){
+		this.players = players;
+	}
+	
+	public String toString(){
+		StringBuilder users = new StringBuilder();
+		for(Player player: players){
+			users.append(player.toString() + "\n");
+		}
+
+		return users.toString();
+	}
+	
 	public void addUser(String name){
 		Player player = new Player(0, 0, ObjectID.Player, name);
 		players.add(player);
 		int index = players.indexOf(this);
 		player.setIndex(index);
 		
+	}
+	
+	public void addUser(String playerString, String delimiter){
+		Player player = new Player(ObjectID.Player, playerString, delimiter);
+		players.add(player);
+		int index = players.indexOf(this);
+		player.setIndex(index);
 	}
 	
 	public void printUsers(){
@@ -48,6 +68,14 @@ public class Users {
 			playerNames.add(player.getName());
 		}
 		return playerNames;
+	}
+	
+	public LinkedList<String> getPlayerStrings(){
+		LinkedList<String> playerStrings = new LinkedList<>();
+		for(Player player: players){
+			playerStrings.add(player.toString());
+		}
+		return playerStrings;
 	}
 	
 	public Player getPlayer(String sender){

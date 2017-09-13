@@ -32,6 +32,9 @@ public class PrefsDialog extends JDialog{
 	private CyButton connectButton;
 	private CyButton okButton;
 	private CyButton cancelButton;
+	
+	private CyButton channelButton;
+	
 	private JTextField channelField;
 	private JPasswordField oauthField;
 	private Font font;
@@ -47,8 +50,10 @@ public class PrefsDialog extends JDialog{
 		showButton = new CyButton("show");
 		connectButton = new CyButton("connect");
 		okButton = new CyButton("OK");
-		cancelButton = new CyButton("Cancel");
-				
+		cancelButton = new CyButton("cancel");
+		
+		channelButton = new CyButton("");
+		
 		channelField = new JTextField(10);
 		oauthField = new JPasswordField(10);
 		
@@ -118,6 +123,10 @@ public class PrefsDialog extends JDialog{
 		setLocationRelativeTo(mainFrame);
 	}
 	
+	public void passButton(CyButton channelButton){
+		this.channelButton = channelButton;
+	}
+	
 	private void layoutControls(){
 		
 		JPanel controlsPanel = new JPanel();
@@ -162,10 +171,11 @@ public class PrefsDialog extends JDialog{
 		gc.anchor = GridBagConstraints.WEST;
 		gc.insets = noPadding;
 		controlsPanel.add(oauthField, gc);
+		gc.gridy++;
+		controlsPanel.add(showButton, gc);
 
 		//  buttons panel
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		buttonsPanel.add(showButton);
 		buttonsPanel.add(connectButton);
 		buttonsPanel.add(okButton);
 		buttonsPanel.add(cancelButton);

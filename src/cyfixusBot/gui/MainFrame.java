@@ -53,7 +53,7 @@ public class MainFrame extends JFrame{
 		}
 		 setLayout(new BorderLayout());     
 		 textPanel = new TextPanel();
-		 toolbar = new Toolbar(prefsDialog);
+		 toolbar = new Toolbar(prefsDialog, prefs);
 		 formPanel = new FormPanel();
 		 initBot();
 		 initToolbar();
@@ -68,7 +68,6 @@ public class MainFrame extends JFrame{
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          setAlwaysOnTop(true);
 	}
-	
 	
     private void init() throws Exception{
     	String oauth = prefs.get("oauth", "");
@@ -85,6 +84,7 @@ public class MainFrame extends JFrame{
         bot.connect("irc.chat.twitch.tv", 6667, oauthIn);
         bot.sendRawLineViaQueue("CAP REQ :twitch.tv/membership");
         bot.joinChannel("#" + channel);
+        bot.sendRawLineViaQueue("CAP REQ :twitch.tv/membership");
     }
 	
 	private void initBot(){

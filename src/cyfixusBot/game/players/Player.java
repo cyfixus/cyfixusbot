@@ -5,13 +5,11 @@ import java.awt.Rectangle;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import cyfixusBot.game.entities.Avatar;
 import cyfixusBot.game.entities.ObjectID;
-import sun.reflect.annotation.TypeAnnotation.LocationInfo.Location;
 
 public class Player extends Avatar{
 //	private StatGenerator statGen;
@@ -24,10 +22,31 @@ public class Player extends Avatar{
 		this.setName(name);
 		this.setTitle("");
 	}
+	
+	public Player(ObjectID id, String playerString, String delimiter){
+		super(0, 0, id);
+		Scanner sc = new Scanner(playerString).useDelimiter(delimiter);
+		setName(sc.next());
+		setTitle(sc.next());
+		setCurrency(Double.parseDouble(sc.next()));
+		setLevel(Integer.parseInt(sc.next()));
+		setExp(Integer.parseInt(sc.next()));
+		setHealth(Integer.parseInt(sc.next()));
+		setMana(Integer.parseInt(sc.next()));
+		setStrength(Integer.parseInt(sc.next()));
+		setStamina(Integer.parseInt(sc.next()));
+		setIntelligence(Integer.parseInt(sc.next()));
+		setWill(Integer.parseInt(sc.next()));
+	}
+	
+	
     @Override
     public String toString(){
-    	String playerData = " ";
-    	return playerData;
+    	StringBuilder playerData = new StringBuilder();
+    	playerData.append(name + "\t" + title  + "\t" + currency + "\t" + level  
+    			 + "\t" + exp + "\t" + health + "\t" + mana  + "\t" + strength 
+    			 + "\t" + stamina + "\t" + intelligence + "\t" + will);
+    	return playerData.toString();
     }
     
     private void writeObject(ObjectOutputStream o)

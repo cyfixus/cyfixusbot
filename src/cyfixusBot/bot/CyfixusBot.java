@@ -4,6 +4,7 @@ package cyfixusBot.bot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 import javax.swing.Timer;
 
@@ -39,7 +40,20 @@ public class CyfixusBot extends PircBot implements ActionListener{
 		Timer timer = new Timer(1000, this);
         timer.setInitialDelay(0);
         timer.start();
+        populateUsers();
 	}
+	
+	public void populateUsers(){
+		String players = dataManager.getPlayersString();
+		//grab line then pass to addUser with dlimiter
+		Scanner sc = new Scanner(players).useDelimiter("\\n");
+		while(sc.hasNext()){
+			users.addUser(sc.next(), "\t");
+		}
+		
+		
+	}
+	
 	
 	public void addStringListener(StringListener listener){
 		this.stringListener = listener;
@@ -179,7 +193,7 @@ public class CyfixusBot extends PircBot implements ActionListener{
 		    }
 		    
 		    
-		dataManager.save(users.getPlayerNames());
+		dataManager.save(users.getPlayerStrings());
 	}
 	
 	public boolean addPlayer(String targetPlayer){

@@ -22,20 +22,22 @@ public class Toolbar extends JPanel implements ActionListener{
 	private CyButton getUsers;
 	private CyButton prefButton;
 	private PrefsDialog prefsDialog;
+	private Preferences prefs;
 	private Font font;
 
 	private StringListener textListener;
 	private CyButtonListener cyButtonListener;
 	
-	public Toolbar(PrefsDialog prefsDialog){
+	public Toolbar(PrefsDialog prefsDialog, Preferences prefs){
 		this.prefsDialog = prefsDialog;
+		this.prefs = prefs;
 		setBackground(new Color(3));
 		setBorder(BorderFactory.createEtchedBorder());
 		setFont();
 	
 		autoJoin = new CyButton("Auto Join");
 		getUsers = new CyButton("Get Users");
-		prefButton = new CyButton("p");
+		initPrefButton();
 
 		
 		autoJoin.addActionListener(this);
@@ -49,6 +51,10 @@ public class Toolbar extends JPanel implements ActionListener{
 		add(prefButton);
 	  
     }
+	
+	public void initPrefButton(){
+		prefButton = new CyButton("#" + prefs.get("channel", ""));
+	}
 	
 	public void setStringListener(StringListener listener){
 		this.textListener = listener;
@@ -79,6 +85,7 @@ public class Toolbar extends JPanel implements ActionListener{
         }
         else if(clicked == prefButton){
         	prefsDialog.setVisible(true);
+        	prefsDialog.passButton(prefButton);
         }
 	}
 	

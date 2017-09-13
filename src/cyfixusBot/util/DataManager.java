@@ -1,31 +1,42 @@
 package cyfixusBot.util;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.LinkedList;
-
-import cyfixusBot.game.players.Player;
+import java.util.Scanner;
 
 public class DataManager {
-	private FileOutputStream fout;
+	
+	private FileWriter fout;
 	private FileInputStream fin;
-	private ObjectOutputStream out;
+	private File file;
+	private BufferedWriter out;
 	private ObjectInputStream in;
 	private LinkedList<String> players;
+	private String player;
+	private StringBuilder saveString;
 	
 	public DataManager(){
 		load();
 	}
 	
 	public LinkedList<String> load(){
+		saveString = new StringBuilder();
 		players = new LinkedList<>();
 		try {
-			fin = new FileInputStream("users.txt");
-			players = (LinkedList<String>)in.readObject();
-			
+			file = new File("users.txt");
+			Scanner sc = new Scanner(new FileInputStream(file));
+			System.out.println(sc.nextLine());
+			while(sc.hasNextLine()){
+				player = sc.nextLine();
+				players.add(player);
+				saveString.append(player + "\n");
+				System.out.println(player);
+			}
+			sc.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -34,15 +45,32 @@ public class DataManager {
 	}
 	
 	public void save(LinkedList<String> players){
+		saveString = new StringBuilder();
+    	saveString.append("name\t\ttitle\tcurrency level  "  
+    			 + "exp  health  mana  strength  " 
+    			 + "stamina  intelligence  will\n");
+		for(String player: players){
+			saveString.append(player + "\n");
+			System.out.println(player);
+		}
+		
 		try{
-		fout = new FileOutputStream("users.txt");
-		out = new ObjectOutputStream(fout);
-		out.writeObject(players);
+		fout = new FileWriter("users.txt");
+		out = new BufferedWriter(fout);
+		out.write(saveString.toString());
 		out.close();
 		System.out.println("Save success");
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	public LinkedList<String> getPlayers(){
+		return players;
+	}
+	
+	public String getPlayersString(){
+		return saveString.toString();
 	}
 
 }
