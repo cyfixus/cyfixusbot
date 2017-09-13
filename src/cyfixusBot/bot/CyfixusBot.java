@@ -199,6 +199,10 @@ public class CyfixusBot extends PircBot implements ActionListener{
 		    }
 		    
 		    
+		save();
+	}
+	
+	public void save(){
 		dataManager.save(users.getPlayerStrings());
 	}
 	
@@ -418,6 +422,13 @@ public class CyfixusBot extends PircBot implements ActionListener{
 		buildString.append('\n');
 		return buildString.toString();
 	}
+	
+	public LinkedList<String> getPlayerNames(){
+		return users.getPlayerNames();
+	}
+	
+	
+	
 	public void grantExpToAll(long exp){
 		for(Player player: users.getPlayers()){
 			grantExp(player, 1);
@@ -451,7 +462,7 @@ public class CyfixusBot extends PircBot implements ActionListener{
 			                int health, int mana,
 			                double currency, int strength,
 			                int stamina, int intelligence,
-			                int will){
+			                int will, int playerClass){
 		boolean newPlayer = true;
 		newPlayer = addPlayer(name);
 		Player player = users.getPlayer(name);
@@ -488,6 +499,9 @@ public class CyfixusBot extends PircBot implements ActionListener{
 		}
 		if(player.getWill() != will){
 			player.setWill(will);
+		}
+		if(player.getPlayerClass() != playerClass){
+			player.setPlayerClass(playerClass);
 		}
 		return newPlayer;
 	}

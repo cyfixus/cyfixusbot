@@ -15,6 +15,7 @@ public class Player extends Avatar{
 //	private StatGenerator statGen;
 	private int index;
 	private int tickets = 0;
+	private int playerClass;
 	private Random random = new Random();
 
 	public Player(float x, float y, ObjectID id, String name) {
@@ -37,15 +38,23 @@ public class Player extends Avatar{
 		setStamina(Integer.parseInt(sc.next()));
 		setIntelligence(Integer.parseInt(sc.next()));
 		setWill(Integer.parseInt(sc.next()));
+		setPlayerClass(Integer.parseInt(sc.next()));
 	}
 	
+	public void setPlayerClass(int playerClass){
+		this.playerClass = playerClass;
+	}
+	
+	public int getPlayerClass(){
+		return playerClass;
+	}
 	
     @Override
     public String toString(){
     	StringBuilder playerData = new StringBuilder();
     	playerData.append(name + "\t" + title  + "\t" + currency + "\t" + level  
     			 + "\t" + exp + "\t" + health + "\t" + mana  + "\t" + strength 
-    			 + "\t" + stamina + "\t" + intelligence + "\t" + will);
+    			 + "\t" + stamina + "\t" + intelligence + "\t" + will + "\t" + playerClass);
     	return playerData.toString();
     }
     
@@ -75,6 +84,7 @@ public class Player extends Avatar{
 		System.out.println("stamina: " + stamina);
 		System.out.println("intelligence: " + intelligence);
 		System.out.println("will: " + will);
+		System.out.println("class: " + playerClass);
 	}
 	
 	

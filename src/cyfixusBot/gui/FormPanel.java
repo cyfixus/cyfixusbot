@@ -5,14 +5,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import cyfixusBot.bot.CyfixusBot;
 import cyfixusBot.events.FormEvent;
 import cyfixusBot.gui.components.CyButton;
 import cyfixusBot.gui.components.CyClassCategory;
@@ -24,6 +25,7 @@ import cyfixusBot.util.FormListener;
 
 public class FormPanel extends JPanel {
 	
+
 	private String name;
 	private String title;
 	private int level;
@@ -37,6 +39,7 @@ public class FormPanel extends JPanel {
     private int stamina;
     private int intelligence;
     private int will;
+    private int playerClass;
 	
 	private CyLabel nameLabel = new CyLabel("name:");
 	private CyLabel titleLabel = new CyLabel("title:");
@@ -72,13 +75,19 @@ public class FormPanel extends JPanel {
 	private FormListener formListener;
 	private CyList classList;
 	private CyCombo classCombo;
+	private CyCombo nameCombo;
+	
+	private CyfixusBot bot;
 
 	
-    public FormPanel(){
+    public FormPanel(CyfixusBot bot){
+    	this.bot = bot;
     	setBackground(new Color(3));
     	Dimension dim = getPreferredSize();
     	dim.width = 410;
     	setPreferredSize(dim);
+    	nameCombo = new CyCombo();
+    	loadNameCombo();
     	
     	classList = new CyList();
     	classCombo = new CyCombo();
@@ -93,6 +102,8 @@ public class FormPanel extends JPanel {
     	classList.setPreferredSize(new Dimension(110, 66));
     	classList.setBorder(BorderFactory.createEtchedBorder());
     	classList.setSelectedIndex(1);
+    	
+    	
 
     	
     	addBtn.addActionListener(new ActionListener(){
@@ -101,6 +112,8 @@ public class FormPanel extends JPanel {
     			FormEvent ev = new FormEvent(this, name);
     			if(formListener != null){
     				formListener.formAdd(ev);
+    				loadNameCombo();
+    				bot.save();
     			}
 			}
     	});
@@ -111,13 +124,15 @@ public class FormPanel extends JPanel {
     			FormEvent ev = new FormEvent(this, name);
     			if(formListener != null){
     				formListener.formRemove(ev);
+    				loadNameCombo();
+    				bot.save();
     			}
     		}
     	});
     	
     	setBtn.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent e){
-    			name = nameField.getText();
+    			name = new String(nameCombo.getSelectedItem().toString());
     			title = titleField.getText();
     			level = Integer.parseInt(levelField.getText());
     			capacity = Double.parseDouble(capacityField.getText());
@@ -129,22 +144,26 @@ public class FormPanel extends JPanel {
     			stamina = Integer.parseInt(staminaField.getText());
     			intelligence = Integer.parseInt(intelligenceField.getText());
     			will = Integer.parseInt(willField.getText());
+    			playerClass = classCombo.getSelectedIndex();
+    			System.out.println("Player class: " + playerClass);
     			FormEvent ev = new FormEvent(this, name, title, 
     					                   level, capacity, 
     					                   exp,
     					                   health, mana,
     					                   currency, strength,
     					                   stamina, intelligence,
-    					                   will);
+    					                   will, playerClass);
     			if(formListener != null){
     				formListener.setPlayerStats(ev);
+    				loadNameCombo();
+    				bot.save();
     			}
     		}
     	});
     	
     	getBtn.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent e){
-    			name = nameField.getText();
+    			name = new String(nameCombo.getSelectedItem().toString());
     			FormEvent ev = new FormEvent(this, name);
     			if(formListener != null){
     				formListener.getPlayerStats(ev);
@@ -229,7 +248,7 @@ public class FormPanel extends JPanel {
     	gc.gridx = 1;
     	gc.gridy = 0;
     	gc.fill = GridBagConstraints.HORIZONTAL;
-    	add(nameField, gc);
+    	add(nameCombo, gc);
     	
     	gc.gridx = 1;
     	gc.gridy = 1;
@@ -352,6 +371,16 @@ public class FormPanel extends JPanel {
 
     	
     }
+    
+    public void loadNameCombo(){
+    	int count = 0;
+    	LinkedList<String> players = bot.getPlayerNames();
+     	DefaultComboBoxModel classModel = new DefaultComboBoxModel();
+     	for(String player: players){
+     		classModel.addElement(new CyClassCategory(count++, player));
+     	}
+    	nameCombo.setModel(classModel);
+    }
 
 	public void setFormListener(FormListener listener) {
 		this.formListener = listener;
@@ -363,7 +392,7 @@ public class FormPanel extends JPanel {
 			             int health, int mana,
 			             double currency, int strength,
 			             int stamina, int intelligence,
-			             int will) {
+			             int will, int playerClass) {
 		this.name = name;
 		this.title = title;
 		this.level = level;
@@ -377,13 +406,15 @@ public class FormPanel extends JPanel {
 		this.stamina = stamina;
 		this.intelligence = intelligence;
 		this.will = will;
+		this.playerClass = playerClass;
+		
 		fillTextFields(name, title,
 				level, capacity,
 				exp, toNextLevel,
 				health, mana,
 				currency, strength,
 				stamina, intelligence,
-				will);
+				will, playerClass);
 	}
 	public void fillTextFields(String name, String title,
             					int level, double capacity,
@@ -391,7 +422,7 @@ public class FormPanel extends JPanel {
             					int health, int mana,
             					double currency, int strength,
             					int stamina, int intelligence,
-            					int will) {
+            					int will, int playerClass) {
 		nameField.setText(name);
 		titleField.setText(title);
 		levelField.setText(level+"");
@@ -405,6 +436,7 @@ public class FormPanel extends JPanel {
 		staminaField.setText(stamina+"");
 		intelligenceField.setText(intelligence+"");
 		willField.setText(will+"");
+		classCombo.setSelectedIndex(playerClass);
 	}
 }
 

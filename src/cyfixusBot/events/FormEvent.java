@@ -15,11 +15,7 @@ public class FormEvent extends EventObject {
     private int stamina;
     private int intelligence;
     private int will;
-
-
-	
-
-	private int classCat;
+    private int playerClass;
 
 	public FormEvent(Object source) {
 		super(source);
@@ -30,11 +26,11 @@ public class FormEvent extends EventObject {
 		this.name = name;
 	}
 	
-	public FormEvent(Object source, String name, String title, int classCat){
+	public FormEvent(Object source, String name, String title, int playerClass){
 		super(source);
 		this.name = name;
 		this.title = title;
-		this.classCat = classCat;
+		this.playerClass = playerClass;
 	}
 	public FormEvent(Object source, String name, String title,
 	         int level, double capacity, 
@@ -42,7 +38,7 @@ public class FormEvent extends EventObject {
 	         int health, int mana, 
 	         double currency, int strength,
 	         int stamina, int intelligence, 
-	         int will){
+	         int will, int playerClass){
 		super(source);
 		this.name = name;
 		this.title = title;
@@ -56,6 +52,7 @@ public class FormEvent extends EventObject {
 		this.stamina = stamina;
 		this.intelligence = intelligence;
 		this.will = will;
+		this.playerClass = playerClass;
 
 
 	}
@@ -65,7 +62,7 @@ public class FormEvent extends EventObject {
 			         int health, int mana, 
 			         double currency, int strength,
 			         int stamina, int intelligence, 
-			         int will, int classCat){
+			         int will, int playerClass){
 		super(source);
 		this.name = name;
 		this.title = title;
@@ -80,7 +77,7 @@ public class FormEvent extends EventObject {
 		this.stamina = stamina;
 		this.intelligence = intelligence;
 		this.will = will;
-		this.classCat = classCat;
+		this.playerClass = playerClass;
 
 	}
 	
@@ -105,7 +102,7 @@ public class FormEvent extends EventObject {
 
 	public String getClassString(){
 		String classString = "";
-		switch(classCat){
+		switch(playerClass){
 		case 0:
 			classString = "grunt";
 			break;
@@ -210,12 +207,12 @@ public class FormEvent extends EventObject {
 		this.currency = currency;
 	}
 
-	public int getClassCat() {
-		return classCat;
+	public int getPlayerClass() {
+		return playerClass;
 	}
 
-	public void setClassCat(int classCat) {
-		this.classCat = classCat;
+	public void setPlayerClass(int playerClass) {
+		this.playerClass = playerClass;
 	}
 
 }

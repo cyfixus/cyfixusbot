@@ -58,8 +58,9 @@ public class MainFrame extends JFrame{
 		 setLayout(new BorderLayout());     
 		 textPanel = new TextPanel();
 		 toolbar = new Toolbar(prefsDialog, prefs);
-		 formPanel = new FormPanel();
+		 
 		 initBot();
+		 formPanel = new FormPanel(bot);
 		 initToolbar();
 		 initFormListener();
 		 
@@ -186,7 +187,7 @@ public class MainFrame extends JFrame{
 						        ev.getHealth(), ev.getMana(),
 						        ev.getCurrency(), ev.getStrength(), 
 						        ev.getStamina(), ev.getIntelligence(),
-						        ev.getWill());
+						        ev.getWill(), ev.getPlayerClass());
 				textPanel.appendText("set " + ev.getName() +" stats\n");
 			}
 			
@@ -200,7 +201,7 @@ public class MainFrame extends JFrame{
 							           player.getHealth(), player.getMana(),
 							           player.getCurrency(), player.getStrength(),
 							           player.getStamina(), player.getIntelligence(),
-							           player.getWill());
+							           player.getWill(), player.getPlayerClass());
 					textPanel.appendText("get " + name + " stats\n");
 				}catch(Exception e){}
 				
