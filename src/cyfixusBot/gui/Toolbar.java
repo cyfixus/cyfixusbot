@@ -1,26 +1,29 @@
 package cyfixusBot.gui;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
+import java.net.URL;
 import java.util.Map;
 import java.util.prefs.Preferences;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import cyfixusBot.gui.components.CyButton;
+import cyfixusBot.gui.components.CyConnectionButton;
 import cyfixusBot.util.CyButtonListener;
 import cyfixusBot.util.StringListener;
 
 public class Toolbar extends JPanel implements ActionListener{
 	private CyButton autoJoin;
 	private CyButton getUsers;
-	private CyButton prefButton;
+	private CyConnectionButton prefButton;
 	private PrefsDialog prefsDialog;
 	private Preferences prefs;
 	private Font font;
@@ -37,13 +40,19 @@ public class Toolbar extends JPanel implements ActionListener{
 	
 		autoJoin = new CyButton("Auto Join");
 		getUsers = new CyButton("Get Users");
-		initPrefButton();
+		prefButton = new CyConnectionButton("#" + prefs.get("channel", ""));
 
 		
 		autoJoin.addActionListener(this);
 		getUsers.addActionListener(this);
-		prefButton.addActionListener(this);
 		
+		
+		prefButton.addActionListener(this);
+		prefButton.setBorderPainted(false);
+		prefButton.setPreferredSize(new Dimension(140, 16));
+		prefButton.setMinimumSize(prefButton.getPreferredSize());
+		prefButton.setFont();
+		setConnectionIcon(0);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		add(autoJoin);
@@ -52,10 +61,38 @@ public class Toolbar extends JPanel implements ActionListener{
 	  
     }
 	
-	public void initPrefButton(){
-		prefButton = new CyButton("#" + prefs.get("channel", ""));
+	public void setConnectionIcon(int index){
+		String icon = "";
+		switch(index){
+			case 1:
+				icon = "status_connected.png";
+				break;
+			case 2:
+				icon = "status_transmitting.png";
+				break;
+			case 3:
+				icon = "status_disconnected.png";
+				break;
+			default:
+				icon = "status_idle.png";
+				break;
+		}
+		prefButton.setIcon(createIcon(icon));
+		prefButton.repaint();
 	}
 	
+	private ImageIcon createIcon(String path){
+		URL url = getClass().getResource(path);
+		
+		if(url == null){
+			System.out.println("unable to load icon");
+		}
+		
+		ImageIcon icon = new ImageIcon(url);
+		
+		return icon;
+	}
+
 	public void setStringListener(StringListener listener){
 		this.textListener = listener;
 	}

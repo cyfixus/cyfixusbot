@@ -48,6 +48,10 @@ public class TextPanel extends JPanel{
 	public void updateView(){
 		scrollPane.getViewport().scrollRectToVisible(getBounds());
 	}
+	
+	public JTextArea getTextArea(){
+		return textArea;
+	}
 
 
 }

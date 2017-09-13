@@ -25,11 +25,14 @@ public class AlertFrame extends JFrame implements ActionListener{
 	
 	
 	public AlertFrame(){
+		
 		super();
+		setFocusableWindowState(false);
 	}
 	
 	public AlertFrame(String message, String alert, int duration){
 		super();
+		setFocusableWindowState(false);
 		this.message = message;
 		this.alert = alert;
 		this.duration = duration;
@@ -43,6 +46,7 @@ public class AlertFrame extends JFrame implements ActionListener{
         Timer timer = new Timer(1000, this);
         timer.setInitialDelay(0);
         timer.start();
+        
 	}
 
 	public void actionPerformed(ActionEvent arg0) {

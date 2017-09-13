@@ -1,11 +1,15 @@
 package cyfixusBot.gui;
 import java.awt.BorderLayout;
-import java.awt.Toolkit;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.prefs.Preferences;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import org.jibble.pircbot.IrcException;

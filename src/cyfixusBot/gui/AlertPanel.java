@@ -23,6 +23,7 @@ public class AlertPanel extends JPanel {
 
 	public AlertPanel(String message, String alert) {
 		super();
+		setFocusable(false);
 		this.message = message;
 		this.alert = alert;
 		setBackground(new Color(3));
@@ -57,7 +58,7 @@ public class AlertPanel extends JPanel {
 		alertLabel2.setFont(alertFont);
 		
 	}
-
+             
 	public void setMessageFont(){
 		messageFont = this.getFont();
 		attributes = messageFont.getAttributes();

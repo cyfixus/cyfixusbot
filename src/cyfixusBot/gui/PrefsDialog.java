@@ -14,17 +14,18 @@ import java.awt.font.TextAttribute;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 import org.jibble.pircbot.IrcException;
 import org.jibble.pircbot.NickAlreadyInUseException;
 
 import cyfixusBot.gui.components.CyButton;
+import cyfixusBot.gui.components.CyConnectionButton;
 import cyfixusBot.gui.components.CyLabel;
+import cyfixusBot.gui.components.CyPasswordField;
+import cyfixusBot.gui.components.CyTextField;
 
 public class PrefsDialog extends JDialog{
 	
@@ -33,10 +34,10 @@ public class PrefsDialog extends JDialog{
 	private CyButton okButton;
 	private CyButton cancelButton;
 	
-	private CyButton channelButton;
+	private CyConnectionButton channelButton;
 	
-	private JTextField channelField;
-	private JPasswordField oauthField;
+	private CyTextField channelField;
+	private CyPasswordField oauthField;
 	private Font font;
 	
 	
@@ -46,16 +47,19 @@ public class PrefsDialog extends JDialog{
 	
 	public PrefsDialog(MainFrame mainFrame){
 		super(mainFrame, "connection", false);
+		setUndecorated(true);
+		setSize(400, 230);
+		setLocationRelativeTo(mainFrame);
 		this.mainFame = mainFrame;
 		showButton = new CyButton("show");
 		connectButton = new CyButton("connect");
 		okButton = new CyButton("OK");
 		cancelButton = new CyButton("cancel");
 		
-		channelButton = new CyButton("");
+		channelButton = new CyConnectionButton("");
 		
-		channelField = new JTextField(10);
-		oauthField = new JPasswordField(10);
+		channelField = new CyTextField(24);
+		oauthField = new CyPasswordField(24);
 		
 		layoutControls();
 		
@@ -118,13 +122,11 @@ public class PrefsDialog extends JDialog{
 			}
 			
 		});
-		
-		setSize(320, 230);
-		setLocationRelativeTo(mainFrame);
+
 	}
 	
-	public void passButton(CyButton channelButton){
-		this.channelButton = channelButton;
+	public void passButton(CyConnectionButton prefButton){
+		this.channelButton = prefButton;
 	}
 	
 	private void layoutControls(){
@@ -175,6 +177,7 @@ public class PrefsDialog extends JDialog{
 		controlsPanel.add(showButton, gc);
 
 		//  buttons panel
+		gc.gridx = 0;
 		buttonsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		buttonsPanel.add(connectButton);
 		buttonsPanel.add(okButton);

@@ -38,7 +38,7 @@ public class DataManager {
 			}
 			sc.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("unable to load: " + file);
 		}
 		return players;
 		
@@ -61,7 +61,7 @@ public class DataManager {
 		out.close();
 		System.out.println("Save success");
 		}catch(Exception e){
-			e.printStackTrace();
+			System.out.println("unable to save: " + fout);
 		}
 	}
 	

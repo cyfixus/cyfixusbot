@@ -44,13 +44,19 @@ public class CyfixusBot extends PircBot implements ActionListener{
 	}
 	
 	public void populateUsers(){
-		String players = dataManager.getPlayersString();
-		//grab line then pass to addUser with dlimiter
-		Scanner sc = new Scanner(players).useDelimiter("\\n");
-		while(sc.hasNext()){
-			users.addUser(sc.next(), "\t");
+		try{
+			System.out.println("trying to populate users");
+			String players = dataManager.getPlayersString();
+			//grab line then pass to addUser with dlimiter
+			Scanner sc = new Scanner(players).useDelimiter("\\n");
+			while(sc.hasNext()){
+				users.addUser(sc.next(), "\t");
+			}
+			sc.close();
+			System.out.println("users populated");
+		} catch(Exception e){
+			System.out.println("unable to populate users");
 		}
-		
 		
 	}
 	

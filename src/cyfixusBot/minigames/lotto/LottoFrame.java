@@ -24,7 +24,7 @@ public class LottoFrame extends JFrame implements ActionListener{
 	protected int time;
 	protected int duration;
 	
-	
+	           
 	
 	public LottoFrame(){
 		super();
@@ -32,6 +32,7 @@ public class LottoFrame extends JFrame implements ActionListener{
 	
 	public LottoFrame(String message, String alert, int duration){
 		super();
+		setFocusableWindowState(false);
 		this.message = message;
 		this.alert = alert;
 		this.duration = duration;

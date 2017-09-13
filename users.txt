@@ -1,4 +1,4 @@
 name		title	currency level  exp  health  mana  strength  stamina  intelligence  will
-cyfixusbot		100.0	7	127	86	92	4	9	6	9
-normsalley		100.0	7	127	87	85	8	8	6	9
-cyfixus		98.0	7	127	83	89	4	7	9	7
+normsalley		100.0	14	127	87	85	8	8	6	9
+cyfixus		91.0	14	127	83	89	4	7	9	7
+cyfixusbot	archon	100.0	1	0	88	87	9	8	4	4

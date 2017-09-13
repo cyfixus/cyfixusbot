@@ -18,8 +18,7 @@ public class TicketFrame extends JFrame implements ActionListener{
 	private Map attributes;
 	private TicketPanel ticketPanel;
 	private int time;
-	
-	
+
 	
 	public TicketFrame(){
 		super("Ticket");
@@ -27,6 +26,7 @@ public class TicketFrame extends JFrame implements ActionListener{
 	
 	public TicketFrame(String sender){
 		super("Ticket");
+		setFocusableWindowState(false);
 		this.sender = sender;
 		ticketPanel = new TicketPanel(sender);
 		add(ticketPanel);

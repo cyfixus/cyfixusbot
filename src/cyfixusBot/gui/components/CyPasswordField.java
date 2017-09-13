@@ -5,20 +5,18 @@ import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.util.Map;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
-public class CyButton extends JButton {
-    private Font font;
+public class CyPasswordField extends JPasswordField {
+	private Font font;
     
-	public CyButton(String text){
-		super(text);
+	public CyPasswordField(int width){
+		super(width);
 		setFont();
 		setBackground(new Color(7));
     	setFont(font);
-		
 	}
-	
+		
 	public void setFont(){
 		font = this.getFont();
 		Map attributes = font.getAttributes();
