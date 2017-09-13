@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
@@ -14,6 +16,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import cyfixusBot.gui.components.CyButton;
 import cyfixusBot.gui.components.CyConnectionButton;
@@ -49,15 +52,34 @@ public class Toolbar extends JPanel implements ActionListener{
 		
 		prefButton.addActionListener(this);
 		prefButton.setBorderPainted(false);
-		prefButton.setPreferredSize(new Dimension(140, 16));
-		prefButton.setMinimumSize(prefButton.getPreferredSize());
+//		prefButton.setPreferredSize(new Dimension(200, 16));
+//		prefButton.setMinimumSize(prefButton.getPreferredSize());
+		prefButton.setHorizontalAlignment(SwingConstants.RIGHT);
 		prefButton.setFont();
 		setConnectionIcon(0);
-		setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		add(autoJoin);
-		add(getUsers);
-		add(prefButton);
+		setLayout(new GridBagLayout());
+    	
+    	GridBagConstraints gc = new GridBagConstraints();
+ //                       -   -  COL 1   	
+        gc.weightx = 0;
+    	gc.gridx = 0;
+    	gc.gridy = 0;
+    	gc.fill = GridBagConstraints.NONE;
+    	gc.anchor = GridBagConstraints.LINE_START;
+    	add(autoJoin, gc);
+    	gc.gridx++;
+    	gc.weightx = 3;
+    	add(getUsers, gc);
+    	gc.weightx = 0;
+    	gc.gridx++;
+    	add(prefButton, gc);
+//    	
+//		setLayout(new FlowLayout(FlowLayout.LEFT));
+//		
+//		add(autoJoin);
+//		add(getUsers);
+//		add(prefButton);
 	  
     }
 	

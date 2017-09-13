@@ -22,7 +22,7 @@ public class CyConnectionButton extends JButton {
 		font = this.getFont();
 		Map attributes = font.getAttributes();
 		attributes.put(TextAttribute.FOREGROUND, new Color(0xff00ffff));
-		attributes.put(TextAttribute.SIZE, 12);
+		attributes.put(TextAttribute.SIZE, 14);
 		attributes.put(TextAttribute.WIDTH, TextAttribute.WIDTH_REGULAR);
 		attributes.put(TextAttribute.FAMILY, "Nimbus Mono L");
 		attributes.put(TextAttribute.WEIGHT, TextAttribute.WEIGHT_BOLD);

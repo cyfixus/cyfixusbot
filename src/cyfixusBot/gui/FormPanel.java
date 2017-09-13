@@ -84,9 +84,11 @@ public class FormPanel extends JPanel {
     	this.bot = bot;
     	setBackground(new Color(3));
     	Dimension dim = getPreferredSize();
-    	dim.width = 410;
+    	dim.width = 500;
     	setPreferredSize(dim);
     	nameCombo = new CyCombo();
+    	nameCombo.setEditable(true);
+    	nameCombo.getEditor().getEditorComponent().setBackground(new Color(7));
     	loadNameCombo();
     	
     	classList = new CyList();

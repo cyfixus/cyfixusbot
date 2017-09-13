@@ -69,7 +69,7 @@ public class MainFrame extends JFrame{
 		 add(textPanel, BorderLayout.SOUTH);
 		 add(formPanel, BorderLayout.WEST);
 		 
-		 setSize(410, 600);
+		 setSize(500, 600);
          setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          setAlwaysOnTop(true);
 	}
