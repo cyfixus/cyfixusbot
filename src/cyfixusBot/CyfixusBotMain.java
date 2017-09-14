@@ -9,13 +9,13 @@ import cyfixusBot.gui.MainFrame;
 public class CyfixusBotMain {
 
     public static void main(String[] args) throws Exception {
-    	SwingUtilities.invokeLater(new Runnable(){
-    		public void run(){
-    			MainFrame mainFrame = new MainFrame(); 
-    			mainFrame.setIconImage(new ImageIcon("ico.png").getImage());
-    			mainFrame.setVisible(true);
-    		}
-    	});
+      SwingUtilities.invokeLater(new Runnable(){
+        public void run(){
+          MainFrame mainFrame = new MainFrame(); 
+          mainFrame.setIconImage(new ImageIcon("ico.png").getImage());
+          mainFrame.setVisible(true);
+        }
+      });
         
     }
 

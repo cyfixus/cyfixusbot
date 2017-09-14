@@ -2,217 +2,217 @@ package cyfixusBot.events;
 import java.util.EventObject;
 
 public class FormEvent extends EventObject {
-	private String name;
-	private String title;
-	private int level;
-	private double capacity;
-	private long exp;
-	private long toNextLevel;
+  private String name;
+  private String title;
+  private int level;
+  private double capacity;
+  private long exp;
+  private long toNextLevel;
   private int health;
   private int mana;
-	private double currency;
+  private double currency;
   private int strength;
   private int stamina;
   private int intelligence;
   private int will;
   private int playerClass;
 
-	public FormEvent(Object source) {
-		super(source);
-	}
-	
-	public FormEvent(Object source, String name){
-		super(source);
-		this.name = name;
-	}
-	
-	public FormEvent(Object source, String name, String title, int playerClass){
-		super(source);
-		this.name = name;
-		this.title = title;
-		this.playerClass = playerClass;
-	}
-	public FormEvent(Object source, String name, String title,
-	         int level, double capacity, 
-	         long exp, 
-	         int health, int mana, 
-	         double currency, int strength,
-	         int stamina, int intelligence, 
-	         int will, int playerClass){
-		super(source);
-		this.name = name;
-		this.title = title;
-		this.level = level;
-		this.capacity = capacity;
-		this.exp = exp;
-		this.health = health;
-		this.mana = mana;
-		this.currency = currency;
-		this.strength = strength;
-		this.stamina = stamina;
-		this.intelligence = intelligence;
-		this.will = will;
-		this.playerClass = playerClass;
+  public FormEvent(Object source) {
+    super(source);
+  }
+  
+  public FormEvent(Object source, String name){
+    super(source);
+    this.name = name;
+  }
+  
+  public FormEvent(Object source, String name, String title, int playerClass){
+    super(source);
+    this.name = name;
+    this.title = title;
+    this.playerClass = playerClass;
+  }
+  public FormEvent(Object source, String name, String title,
+           int level, double capacity, 
+           long exp, 
+           int health, int mana, 
+           double currency, int strength,
+           int stamina, int intelligence, 
+           int will, int playerClass){
+    super(source);
+    this.name = name;
+    this.title = title;
+    this.level = level;
+    this.capacity = capacity;
+    this.exp = exp;
+    this.health = health;
+    this.mana = mana;
+    this.currency = currency;
+    this.strength = strength;
+    this.stamina = stamina;
+    this.intelligence = intelligence;
+    this.will = will;
+    this.playerClass = playerClass;
 
 
-	}
-	public FormEvent(Object source, String name, String title,
-			         int level, double capacity, 
-			         long exp,long toNextLevel, 
-			         int health, int mana, 
-			         double currency, int strength,
-			         int stamina, int intelligence, 
-			         int will, int playerClass){
-		super(source);
-		this.name = name;
-		this.title = title;
-		this.level = level;
-		this.capacity = capacity;
-		this.exp = exp;
-		this.toNextLevel = toNextLevel;
-		this.health = health;
-		this.mana = mana;
-		this.currency = currency;
-		this.strength = strength;
-		this.stamina = stamina;
-		this.intelligence = intelligence;
-		this.will = will;
-		this.playerClass = playerClass;
+  }
+  public FormEvent(Object source, String name, String title,
+               int level, double capacity, 
+               long exp,long toNextLevel, 
+               int health, int mana, 
+               double currency, int strength,
+               int stamina, int intelligence, 
+               int will, int playerClass){
+    super(source);
+    this.name = name;
+    this.title = title;
+    this.level = level;
+    this.capacity = capacity;
+    this.exp = exp;
+    this.toNextLevel = toNextLevel;
+    this.health = health;
+    this.mana = mana;
+    this.currency = currency;
+    this.strength = strength;
+    this.stamina = stamina;
+    this.intelligence = intelligence;
+    this.will = will;
+    this.playerClass = playerClass;
 
-	}
-	
-	
+  }
+  
+  
 
-	public String getName() {
-		return name;
-	}
+  public String getName() {
+    return name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public String getTitle() {
-		return title;
-	}
+  public String getTitle() {
+    return title;
+  }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-		
+  public void setTitle(String title) {
+    this.title = title;
+  }
+    
 
-	public String getClassString(){
-		String classString = "";
-		switch(playerClass){
-		case 0:
-			classString = "grunt";
-			break;
-		case 1:
-			classString = "seer";
-			break;
-		case 2:
-			classString = "sneak";
-			break;
-		case 3:
-			classString = "tradesmith";
-			break;
-		}
-		return classString;
-	}
+  public String getClassString(){
+    String classString = "";
+    switch(playerClass){
+    case 0:
+      classString = "grunt";
+      break;
+    case 1:
+      classString = "seer";
+      break;
+    case 2:
+      classString = "sneak";
+      break;
+    case 3:
+      classString = "tradesmith";
+      break;
+    }
+    return classString;
+  }
 
-	public int getLevel() {
-		return level;
-	}
+  public int getLevel() {
+    return level;
+  }
 
-	public void setLevel(int level) {
-		this.level = level;
-	}
+  public void setLevel(int level) {
+    this.level = level;
+  }
 
-	public int getHealth() {
-		return health;
-	}
+  public int getHealth() {
+    return health;
+  }
 
-	public void setHealth(int health) {
-		this.health = health;
-	}
+  public void setHealth(int health) {
+    this.health = health;
+  }
 
-	public int getMana() {
-		return mana;
-	}
+  public int getMana() {
+    return mana;
+  }
 
-	public void setMana(int mana) {
-		this.mana = mana;
-	}
+  public void setMana(int mana) {
+    this.mana = mana;
+  }
 
-	public int getStrength() {
-		return strength;
-	}
+  public int getStrength() {
+    return strength;
+  }
 
-	public void setStrength(int strength) {
-		this.strength = strength;
-	}
+  public void setStrength(int strength) {
+    this.strength = strength;
+  }
 
-	public int getStamina() {
-		return stamina;
-	}
+  public int getStamina() {
+    return stamina;
+  }
 
-	public void setStamina(int stamina) {
-		this.stamina = stamina;
-	}
+  public void setStamina(int stamina) {
+    this.stamina = stamina;
+  }
 
-	public int getIntelligence() {
-		return intelligence;
-	}
+  public int getIntelligence() {
+    return intelligence;
+  }
 
-	public void setIntelligence(int intelligence) {
-		this.intelligence = intelligence;
-	}
+  public void setIntelligence(int intelligence) {
+    this.intelligence = intelligence;
+  }
 
-	public int getWill() {
-		return will;
-	}
+  public int getWill() {
+    return will;
+  }
 
-	public void setWill(int will) {
-		this.will = will;
-	}
+  public void setWill(int will) {
+    this.will = will;
+  }
 
-	public long getExp() {
-		return exp;
-	}
+  public long getExp() {
+    return exp;
+  }
 
-	public void setExp(long exp) {
-		this.exp = exp;
-	}
+  public void setExp(long exp) {
+    this.exp = exp;
+  }
 
-	public long getToNextLevel() {
-		return toNextLevel;
-	}
+  public long getToNextLevel() {
+    return toNextLevel;
+  }
 
-	public void setToNextLevel(long toNextLevel) {
-		this.toNextLevel = toNextLevel;
-	}
+  public void setToNextLevel(long toNextLevel) {
+    this.toNextLevel = toNextLevel;
+  }
 
-	public double getCapacity() {
-		return capacity;
-	}
+  public double getCapacity() {
+    return capacity;
+  }
 
-	public void setCapacity(double capacity) {
-		this.capacity = capacity;
-	}
+  public void setCapacity(double capacity) {
+    this.capacity = capacity;
+  }
 
-	public double getCurrency() {
-		return currency;
-	}
+  public double getCurrency() {
+    return currency;
+  }
 
-	public void setCurrency(double currency) {
-		this.currency = currency;
-	}
+  public void setCurrency(double currency) {
+    this.currency = currency;
+  }
 
-	public int getPlayerClass() {
-		return playerClass;
-	}
+  public int getPlayerClass() {
+    return playerClass;
+  }
 
-	public void setPlayerClass(int playerClass) {
-		this.playerClass = playerClass;
-	}
+  public void setPlayerClass(int playerClass) {
+    this.playerClass = playerClass;
+  }
 
 }

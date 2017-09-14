@@ -38,48 +38,48 @@ public class MainFrame extends JFrame{
   private Preferences prefs;
 
   public MainFrame(){
-	super("cyfixusbot");
-	prefsDialog = new PrefsDialog(this);
-	prefs = Preferences.userRoot().node("db");
-	prefsDialog.setPrefsListener(new PrefsListener() {
-  	  @Override
-	  public void preferencesSet(String channel, String oauth) {
-	    prefs.put("channel", channel);
-	    prefs.put("oauth", oauth);
-	  } 
+  super("cyfixusbot");
+  prefsDialog = new PrefsDialog(this);
+  prefs = Preferences.userRoot().node("db");
+  prefsDialog.setPrefsListener(new PrefsListener() {
+      @Override
+    public void preferencesSet(String channel, String oauth) {
+      prefs.put("channel", channel);
+      prefs.put("oauth", oauth);
+    } 
     });
     try {
-	  init();
-	} catch (Exception e) {
-	  System.out.println("can't connect");
-	}
-	setLayout(new BorderLayout());     
-	textPanel = new TextPanel();
-	toolbar = new Toolbar(prefsDialog, prefs);
-	 
-	initBot();
-	formPanel = new FormPanel(bot);
-	initToolbar();
-	initFormListener();
-		 
+    init();
+  } catch (Exception e) {
+    System.out.println("can't connect");
+  }
+  setLayout(new BorderLayout());     
+  textPanel = new TextPanel();
+  toolbar = new Toolbar(prefsDialog, prefs);
+   
+  initBot();
+  formPanel = new FormPanel(bot);
+  initToolbar();
+  initFormListener();
+     
     add(toolbar, BorderLayout.NORTH);
-	add(textPanel, BorderLayout.SOUTH);
-	add(formPanel, BorderLayout.WEST);
-		 
-	setSize(500, 600);
+  add(textPanel, BorderLayout.SOUTH);
+  add(formPanel, BorderLayout.WEST);
+     
+  setSize(500, 600);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setAlwaysOnTop(true);
   }
-	
+  
   private void init() throws Exception{
     String oauth = prefs.get("oauth", "");
-	String channel = prefs.get("channel", "");
-	prefsDialog.setDefaults(channel, oauth);
-	stageBot(channel, oauth);
+  String channel = prefs.get("channel", "");
+  prefsDialog.setDefaults(channel, oauth);
+  stageBot(channel, oauth);
   }
     
   protected void stageBot(String channel, String oauth) 
-		  throws NickAlreadyInUseException, IOException, IrcException{
+      throws NickAlreadyInUseException, IOException, IrcException{
 
     String oauthIn = "oauth:" + oauth;
     bot = new CyfixusBot();
@@ -90,115 +90,115 @@ public class MainFrame extends JFrame{
     bot.joinChannel("#" + channel);
     bot.sendRawLineViaQueue("CAP REQ :twitch.tv/membership");
   }
-	
+  
   private void initBot(){
-	bot.addStringListener(new StringListener(){
-			
-	  public void textEmitted(String text){
-		textPanel.appendText(text);
-		textPanel.updateView();
-		String[] splitText = text.split(" ");
-		if(splitText[0].equals("Welcome")){
-		  AlertFrame welcome = new AlertFrame(splitText[1], "welcome", 5);
-		  welcome.setVisible(true);
-		}
+  bot.addStringListener(new StringListener(){
+      
+    public void textEmitted(String text){
+    textPanel.appendText(text);
+    textPanel.updateView();
+    String[] splitText = text.split(" ");
+    if(splitText[0].equals("Welcome")){
+      AlertFrame welcome = new AlertFrame(splitText[1], "welcome", 5);
+      welcome.setVisible(true);
+    }
       }  
     });
-		
-	bot.addLottoListener(new LottoListener(){
+    
+  bot.addLottoListener(new LottoListener(){
 
-	  public void buyTicket(String sender) {
-		SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+    public void buyTicket(String sender) {
+    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
 
-		  @Override
-		  protected Void doInBackground() throws Exception {
-		    AlertFrame lotto = new AlertFrame(sender, "ticket", 3);
-	        lotto.setVisible(true);
-	        return null;
-		  }
-	    };
-	    worker.execute();
+      @Override
+      protected Void doInBackground() throws Exception {
+        AlertFrame lotto = new AlertFrame(sender, "ticket", 3);
+          lotto.setVisible(true);
+          return null;
+      }
+      };
+      worker.execute();
       }
       public void announceWinner(String winner) {
-		AlertFrame lotto = new AlertFrame(winner, "winner", 5);
-		lotto.resize(500, 300);
-		lotto.setPanel(new WinnerPanel(winner, "Winner"));
-		lotto.setVisible(true);
-	  }	
+    AlertFrame lotto = new AlertFrame(winner, "winner", 5);
+    lotto.resize(500, 300);
+    lotto.setPanel(new WinnerPanel(winner, "Winner"));
+    lotto.setVisible(true);
+    } 
     });
   }
-	
+  
   public void initToolbar(){
-	toolbar.setStringListener(new StringListener(){
-	  public void textEmitted(String text){
-		textPanel.appendText(bot.getAllPlayers());
-	  }
+  toolbar.setStringListener(new StringListener(){
+    public void textEmitted(String text){
+    textPanel.appendText(bot.getAllPlayers());
+    }
     });
-		 
-	toolbar.setCyButtonListener(new CyButtonListener(){
-	  public void cyButtonClicked(String command){
-	    switch(command){
-		  case "autojoin":
-			bot.autoJoin();
-			break;
-		  case "getusers":
-			bot.getUsers();
-			break;
-		}
+     
+  toolbar.setCyButtonListener(new CyButtonListener(){
+    public void cyButtonClicked(String command){
+      switch(command){
+      case "autojoin":
+      bot.autoJoin();
+      break;
+      case "getusers":
+      bot.getUsers();
+      break;
+    }
       }
     });
   }
   public void initFormListener(){
-		
-	formListener = new FormListener(){
-	  public void formEventOccurred(FormEvent e) {
-		name = e.getName();
-		title = e.getTitle();
-		classString = e.getClassString();
-		 
-		textPanel.appendText("name: " + name + "\t");
-		textPanel.appendText("title: " + title + "\t");
-		textPanel.appendText("class: " + classString + "\n");
-	  }
+    
+  formListener = new FormListener(){
+    public void formEventOccurred(FormEvent e) {
+    name = e.getName();
+    title = e.getTitle();
+    classString = e.getClassString();
+     
+    textPanel.appendText("name: " + name + "\t");
+    textPanel.appendText("title: " + title + "\t");
+    textPanel.appendText("class: " + classString + "\n");
+    }
       public void formRemove(FormEvent e) {
-		name = e.getName();
-		if(bot.removePlayerGUI(name)){
-		  textPanel.appendText("removed: " + name + '\n');
-		}
+    name = e.getName();
+    if(bot.removePlayerGUI(name)){
+      textPanel.appendText("removed: " + name + '\n');
+    }
       }
 
       public void formAdd(FormEvent e) {
-	    name = e.getName();
-		bot.addPlayer(name);
-		textPanel.appendText("added: " + name + '\n');
-	  }
+      name = e.getName();
+    bot.addPlayer(name);
+    textPanel.appendText("added: " + name + '\n');
+    }
 
-	  public void setPlayerStats(FormEvent ev) {
+    public void setPlayerStats(FormEvent ev) {
         bot.gmAddPlayer(ev.getName(), ev.getTitle(),
-			(byte)(ev.getLevel()), ev.getCapacity(), 
-			ev.getExp(), 
-			(byte)(ev.getHealth()), (byte)(ev.getMana()),
-			ev.getCurrency(), (byte)(ev.getStrength()), 
-			(byte)(ev.getStamina()), (byte)(ev.getIntelligence()),
-			(byte)(ev.getWill()), ev.getPlayerClass());
-	    textPanel.appendText("set " + ev.getName() +" stats\n");
-	  }
-			
-	  public void getPlayerStats(FormEvent ev){
-	    name = ev.getName();
-		try{
-		  player = bot.getPlayer(name);
-		  formPanel.setStats(name, player.getTitle(),
-			        player.getLevel(), player.getCapacity(),
-			        player.getExp(), player.getExpToNextLevel(),
-			        player.getHealth(), player.getMana(),
-			        player.getCurrency(), player.getStrength(),
-			        player.getStamina(), player.getIntelligence(),
-			        player.getWill(), player.getPlayerClass());
+      (byte)(ev.getLevel()), ev.getCapacity(), 
+      ev.getExp(), 
+      (byte)(ev.getHealth()), (byte)(ev.getMana()),
+      ev.getCurrency(), (byte)(ev.getStrength()), 
+      (byte)(ev.getStamina()), (byte)(ev.getIntelligence()),
+      (byte)(ev.getWill()), ev.getPlayerClass());
+      textPanel.appendText("set " + ev.getName() +" stats\n");
+    }
+      
+    public void getPlayerStats(FormEvent ev){
+      name = ev.getName();
+    try{
+      player = bot.getPlayer(name);
+      formPanel.setStats(name, player.getTitle(),
+              player.getLevel(), player.getCapacity(),
+              player.getExp(), player.getExpToNextLevel(),
+              player.getHealth(), player.getMana(),
+              player.getCurrency(), player.getStrength(),
+              player.getStamina(), player.getIntelligence(),
+              player.getWill(), player.getPlayerClass());
           textPanel.appendText("get " + name + " stats\n");
-		}catch(Exception e){}	
-	  }
+    }catch(Exception e){} 
+    }
     };
-	formPanel.setFormListener(formListener);
+  formPanel.setFormListener(formListener);
   }
 }

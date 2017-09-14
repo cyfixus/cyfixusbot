@@ -15,29 +15,29 @@ import javax.swing.Timer;
 
 public class AlertFrame extends JFrame implements ActionListener{
 
-	protected String message;
-	protected String alert;
-	protected Map attributes;
-	protected AlertPanel alertPanel;
-	protected int time;
-	protected int duration;
-	
-	
-	
-	public AlertFrame(){
-		super();
-		setFocusableWindowState(false);
-	}
-	
-	public AlertFrame(String message, String alert, int duration){
-		super();
-		setFocusableWindowState(false);
-		this.message = message;
-		this.alert = alert;
-		this.duration = duration;
-		alertPanel = new AlertPanel(message, alert);
-		add(alertPanel);
-		setSize(300, 300);
+  protected String message;
+  protected String alert;
+  protected Map attributes;
+  protected AlertPanel alertPanel;
+  protected int time;
+  protected int duration;
+  
+  
+  
+  public AlertFrame(){
+    super();
+    setFocusableWindowState(false);
+  }
+  
+  public AlertFrame(String message, String alert, int duration){
+    super();
+    setFocusableWindowState(false);
+    this.message = message;
+    this.alert = alert;
+    this.duration = duration;
+    alertPanel = new AlertPanel(message, alert);
+    add(alertPanel);
+    setSize(300, 300);
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setLocation(2600, 400);
     setAlwaysOnTop(true);
@@ -46,24 +46,24 @@ public class AlertFrame extends JFrame implements ActionListener{
     timer.setInitialDelay(0);
     timer.start();
         
-	}
+  }
 
-	public void actionPerformed(ActionEvent arg0) {
-		time++;
-		if(time % duration == 0){
-//			System.out.println(time);
-			WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSED);
-			Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
-			setVisible(false);
-			dispose();
-			
-		}
-	}
-	
-	public void setPanel(AlertPanel alertPanel){
-		this.alertPanel = alertPanel;
-		add(alertPanel);
-		repaint();
-	}
+  public void actionPerformed(ActionEvent arg0) {
+    time++;
+    if(time % duration == 0){
+//      System.out.println(time);
+      WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSED);
+      Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
+      setVisible(false);
+      dispose();
+      
+    }
+  }
+  
+  public void setPanel(AlertPanel alertPanel){
+    this.alertPanel = alertPanel;
+    add(alertPanel);
+    repaint();
+  }
 
 }
