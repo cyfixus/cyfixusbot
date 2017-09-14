@@ -76,10 +76,10 @@ public class CyfixusBotMain implements ActionListener{
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] gd = ge.getScreenDevices();
         if( screen > -1 && screen < gd.length ) {
-            frame.setLocation((gd[screen].getDefaultConfiguration().getBounds().width*2) - frame.getWidth()/2
+            frame.setLocation((gd[screen].getDefaultConfiguration().getBounds().width) - frame.getWidth()/2
             		, gd[screen].getDefaultConfiguration().getBounds().y);
         } else if( gd.length > 0 ) {
-            frame.setLocation((gd[0].getDefaultConfiguration().getBounds().width*2) - frame.getWidth()/2
+            frame.setLocation((gd[0].getDefaultConfiguration().getBounds().width) - frame.getWidth()/2
             		, gd[0].getDefaultConfiguration().getBounds().y);
         } else {
             throw new RuntimeException( "No Screens Found" );
