@@ -1,4 +1,2 @@
 name		title	currency level  exp  health  mana  strength  stamina  intelligence  will
-cyfixusbot		100.0	1	0	80	84	5	5	9	6	2
 cyfixus	gm	200.0	1	0	85	89	8	9	8	7	1
-jerry	gm	200.0	1	0	85	89	8	9	8	7	1

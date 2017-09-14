@@ -3,10 +3,10 @@ package cyfixusBot.game.entities;
 import java.util.Random;
 
 public abstract class Avatar extends Entity{
-	protected int strength;
-	protected int stamina;
-	protected int intelligence;
-	protected int will;
+	protected byte strength;
+	protected byte stamina;
+	protected byte intelligence;
+	protected byte will;
 	
 	protected CyClass cyClass;
 	private Random random = new Random();
@@ -17,51 +17,51 @@ public abstract class Avatar extends Entity{
 	}
 	
 	private void generateStats(){
-		strength = random.nextInt(6)+4;
-		stamina = random.nextInt(6)+4;
-		intelligence = random.nextInt(6)+4;
-		will = random.nextInt(6)+4;
+		strength = (byte)(random.nextInt(6)+4);
+		stamina = (byte)(random.nextInt(6)+4);
+		intelligence = (byte)(random.nextInt(6)+4);
+		will = (byte)(random.nextInt(6)+4);
 		
 	}
 	
-	public int getStrength(){
+	public byte getStrength(){
 		return strength;
 	}
 	
-	public int getStamina(){
+	public byte getStamina(){
 		return stamina;
 	}
 	
-	public int getIntelligence(){
+	public byte getIntelligence(){
 		return intelligence;
 	}
 	
-	public int getWill(){
+	public byte getWill(){
 		return will;
 	}
 	
-	public void setStrength(int strength){
+	public void setStrength(byte strength){
 		this.strength = strength;
 	}
-	public void setStamina(int stamina){
+	public void setStamina(byte stamina){
 		this.stamina = stamina;
 	}
-	public void setIntelligence(int intelligence){
+	public void setIntelligence(byte intelligence){
 		this.intelligence = intelligence;
 	}
-	public void setWill(int will){
+	public void setWill(byte will){
 		this.will = will;
 	}
-	public void incStrength(int strength){
+	public void incStrength(byte strength){
 		this.strength += strength;
 	}
-	public void incStamina(int stamina){
+	public void incStamina(byte stamina){
 		this.stamina += stamina;
 	}
-	public void incIntelligence(int intelligence){
+	public void incIntelligence(byte intelligence){
 		this.intelligence += intelligence;
 	}
-	public void incWill(int will){
+	public void incWill(byte will){
 		this.will += will;
 	}
 

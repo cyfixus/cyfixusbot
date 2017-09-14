@@ -181,12 +181,12 @@ public class MainFrame extends JFrame{
 
 			public void setPlayerStats(FormEvent ev) {
 				bot.gmAddPlayer(ev.getName(), ev.getTitle(),
-						        ev.getLevel(), ev.getCapacity(), 
+						        (byte)(ev.getLevel()), ev.getCapacity(), 
 						        ev.getExp(), 
-						        ev.getHealth(), ev.getMana(),
-						        ev.getCurrency(), ev.getStrength(), 
-						        ev.getStamina(), ev.getIntelligence(),
-						        ev.getWill(), ev.getPlayerClass());
+						        (byte)(ev.getHealth()), (byte)(ev.getMana()),
+						        ev.getCurrency(), (byte)(ev.getStrength()), 
+						        (byte)(ev.getStamina()), (byte)(ev.getIntelligence()),
+						        (byte)(ev.getWill()), ev.getPlayerClass());
 				textPanel.appendText("set " + ev.getName() +" stats\n");
 			}
 			

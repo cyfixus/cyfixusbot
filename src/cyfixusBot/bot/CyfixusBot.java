@@ -460,12 +460,12 @@ public class CyfixusBot extends PircBot implements ActionListener{
 	}
 	
 	public boolean gmAddPlayer(String name, String title,
-			                int level, double capacity,
+			                byte level, double capacity,
 			                long exp,
-			                int health, int mana,
-			                double currency, int strength,
-			                int stamina, int intelligence,
-			                int will, int playerClass){
+			                byte health, byte mana,
+			                double currency, byte strength,
+			                byte stamina, byte intelligence,
+			                byte will, int playerClass){
 		boolean newPlayer = true;
 		newPlayer = addPlayer(name);
 		Player player = users.getPlayer(name);

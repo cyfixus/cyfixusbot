@@ -179,7 +179,7 @@ public class CyPrinters{
 		privateMessage(channel, sender, " Title: " + player.getTitle());
 	}
 	public void setPlayerLevel(String channel, String sender,  String target, Player player){
-		player.setLevel(Integer.parseInt(target));
+		player.setLevel(Byte.parseByte(target));
 		privateMessage(channel, sender, " Level: " + player.getLevel());
 	}
 	public void setPlayerExp(String channel, String sender, String target,  Player player){
@@ -195,27 +195,27 @@ public class CyPrinters{
 		privateMessage(channel, sender, " Capacity: " + player.getCapacity());
 	}
 	public void setPlayerHealth(String channel, String sender,  String target, Player player){
-		player.setHealth(Integer.parseInt(target));
+		player.setHealth(Byte.parseByte(target));
 		privateMessage(channel, sender, " Health: " + player.getHealth());
 	}
 	public void setPlayerMana(String channel, String sender,  String target, Player player){
-		player.setMana(Integer.parseInt(target));
+		player.setMana(Byte.parseByte(target));
 		privateMessage(channel, sender, " Mana: " + player.getMana());
 	}
 	public void setPlayerStrength(String channel, String sender,  String target, Player player){
-		player.setStrength(Integer.parseInt(target));
+		player.setStrength(Byte.parseByte(target));
 		privateMessage(channel, sender, " Strength: " + player.getStrength());
 	}
 	public void setPlayerStamina(String channel, String sender,  String target, Player player){
-		player.setStamina(Integer.parseInt(target));
+		player.setStamina(Byte.parseByte(target));
 		privateMessage(channel, sender, " Stamina: " + player.getStamina());
 	}
 	public void setPlayerIntelligence(String channel, String sender,  String target, Player player){
-		player.setIntelligence(Integer.parseInt(target));
+		player.setIntelligence(Byte.parseByte(target));
 		privateMessage(channel, sender, " Intelligence: " + player.getIntelligence());
 	}
 	public void setPlayerWill(String channel, String sender,  String target, Player player){
-		player.setWill(Integer.parseInt(target));
+		player.setWill(Byte.parseByte(target));
 		privateMessage(channel, sender, " Will: " + player.getWill());
 	}
 }

@@ -3,13 +3,13 @@ package cyfixusBot.game.entities;
 import java.util.Random;
 
 public abstract class Entity extends GameObject{
-	protected int health;
-	protected int mana;
+	protected byte health;
+	protected byte mana;
 	protected double currency;
 	protected double capacity;
 	protected String name;
 	protected String title;
-	protected int level;
+	protected byte level;
 	protected long exp;
 	protected long toNextLevel;
 	
@@ -21,8 +21,8 @@ public abstract class Entity extends GameObject{
 	}
 	
 	private void generateBase(){
-		health = random.nextInt(20)+80;
-		mana = random.nextInt(20)+80;
+		health = (byte)(random.nextInt(20)+80);
+		mana = (byte)(random.nextInt(20)+80);
 		currency = 100;
 		capacity = 150;
 		level = 1;
@@ -31,15 +31,15 @@ public abstract class Entity extends GameObject{
 		
 	}
 	
-	public int getHealth(){
+	public byte getHealth(){
 		return health;
 	}
 	
-	public int getMana(){
+	public byte getMana(){
 		return mana;
 	}
 	
-	public int getLevel(){
+	public byte getLevel(){
 		return level;
 	}
 	
@@ -78,11 +78,11 @@ public abstract class Entity extends GameObject{
 		toNextLevel = getExp() + (getLevel() * getLevel()) + 10;
 	}
 	
-	public void setHealth(int health){
+	public void setHealth(byte health){
 		this.health = health;
 	}
 	
-	public void setMana(int mana){
+	public void setMana(byte mana){
 		this.mana = mana;
 	}
 	
@@ -94,13 +94,13 @@ public abstract class Entity extends GameObject{
 		this.capacity = capacity;
 	}
 	
-	public void setLevel(int level){
+	public void setLevel(byte level){
 		this.level = level;
 	}
 	public boolean setExp(long exp){
 		this.exp = exp;
 		if(this.exp >= toNextLevel){
-			incLevel(1);
+			incLevel((byte)1);
 			setToNextLevel();
 			return true;
 		}
@@ -109,11 +109,11 @@ public abstract class Entity extends GameObject{
 	
 	
 	
-	public void incHealth(int health){
+	public void incHealth(byte health){
 		this.health += health;
 	}
 	
-	public void incMana(int mana){
+	public void incMana(byte mana){
 		this.mana += mana;
 	}
 	
@@ -125,13 +125,13 @@ public abstract class Entity extends GameObject{
 		this.capacity += capacity;
 	}
 	
-	public void incLevel(int level){
+	public void incLevel(byte level){
 		this.level += level;
 	}
 	public boolean incExp(long exp){
 		this.exp += exp;
 		if(this.exp >= toNextLevel){
-			incLevel(1);
+			incLevel((byte)1);
 			setToNextLevel();
 			return true;
 		}

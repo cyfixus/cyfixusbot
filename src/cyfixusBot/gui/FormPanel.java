@@ -27,18 +27,18 @@ public class FormPanel extends JPanel {
 
   private String name;
   private String title;
-  private int level;
+  private byte level;
   private double capacity;
   private long exp;
   private long toNextLevel;
-    private int health;
-    private int mana;
+  private byte health;
+  private byte mana;
   private double currency;
-    private int strength;
-    private int stamina;
-    private int intelligence;
-    private int will;
-    private int playerClass;
+  private byte strength;
+  private byte stamina;
+  private byte intelligence;
+  private byte will;
+  private int playerClass;
   
   private CyLabel nameLabel = new CyLabel("name:");
   private CyLabel titleLabel = new CyLabel("title:");
@@ -135,16 +135,16 @@ public class FormPanel extends JPanel {
         public void actionPerformed(ActionEvent e){
           name = new String(nameCombo.getSelectedItem().toString());
           title = titleField.getText();
-          level = Integer.parseInt(levelField.getText());
+          level = Byte.parseByte(levelField.getText());
           capacity = Double.parseDouble(capacityField.getText());
           exp = Long.parseLong(expField.getText());
-          health = Integer.parseInt(healthField.getText());
-          mana = Integer.parseInt(manaField.getText());
+          health = Byte.parseByte(healthField.getText());
+          mana = Byte.parseByte(manaField.getText());
           currency = Double.parseDouble(currencyField.getText());
-          strength = Integer.parseInt(strengthField.getText());
-          stamina = Integer.parseInt(staminaField.getText());
-          intelligence = Integer.parseInt(intelligenceField.getText());
-          will = Integer.parseInt(willField.getText());
+          strength = Byte.parseByte(strengthField.getText());
+          stamina = Byte.parseByte(staminaField.getText());
+          intelligence = Byte.parseByte(intelligenceField.getText());
+          will = Byte.parseByte(willField.getText());
           playerClass = classCombo.getSelectedIndex();
           System.out.println("Player class: " + playerClass);
           FormEvent ev = new FormEvent(this, name, title, 
@@ -387,12 +387,12 @@ public class FormPanel extends JPanel {
   }
 
   public void setStats(String name, String title,
-                   int level, double capacity,
+                   byte level, double capacity,
                    long exp, long toNextLevel,
-                   int health, int mana,
-                   double currency, int strength,
-                   int stamina, int intelligence,
-                   int will, int playerClass) {
+                   byte health, byte mana,
+                   double currency, byte strength,
+                   byte stamina, byte intelligence,
+                   byte will, int playerClass) {
     this.name = name;
     this.title = title;
     this.level = level;
@@ -417,12 +417,12 @@ public class FormPanel extends JPanel {
         will, playerClass);
   }
   public void fillTextFields(String name, String title,
-                      int level, double capacity,
+                      byte level, double capacity,
                       long exp, long toNextLevel,
-                      int health, int mana,
-                      double currency, int strength,
-                      int stamina, int intelligence,
-                      int will, int playerClass) {
+                      byte health, byte mana,
+                      double currency, byte strength,
+                      byte stamina, byte intelligence,
+                      byte will, int playerClass) {
     nameField.setText(name);
     titleField.setText(title);
     levelField.setText(level+"");

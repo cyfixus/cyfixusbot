@@ -30,14 +30,14 @@ public class Player extends Avatar{
 		setName(sc.next());
 		setTitle(sc.next());
 		setCurrency(Double.parseDouble(sc.next()));
-		setLevel(Integer.parseInt(sc.next()));
+		setLevel(Byte.parseByte(sc.next()));
 		setExp(Integer.parseInt(sc.next()));
-		setHealth(Integer.parseInt(sc.next()));
-		setMana(Integer.parseInt(sc.next()));
-		setStrength(Integer.parseInt(sc.next()));
-		setStamina(Integer.parseInt(sc.next()));
-		setIntelligence(Integer.parseInt(sc.next()));
-		setWill(Integer.parseInt(sc.next()));
+		setHealth(Byte.parseByte(sc.next()));
+		setMana(Byte.parseByte(sc.next()));
+		setStrength(Byte.parseByte(sc.next()));
+		setStamina(Byte.parseByte(sc.next()));
+		setIntelligence(Byte.parseByte(sc.next()));
+		setWill(Byte.parseByte(sc.next()));
 		setPlayerClass(Integer.parseInt(sc.next()));
 	}
 	
