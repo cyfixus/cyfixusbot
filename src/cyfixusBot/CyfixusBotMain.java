@@ -80,7 +80,7 @@ public class CyfixusBotMain implements ActionListener{
             		, gd[screen].getDefaultConfiguration().getBounds().y);
         } else if( gd.length > 0 ) {
             frame.setLocation((gd[0].getDefaultConfiguration().getBounds().width*2) - frame.getWidth()/2
-            		, gd[screen].getDefaultConfiguration().getBounds().y);
+            		, gd[0].getDefaultConfiguration().getBounds().y);
         } else {
             throw new RuntimeException( "No Screens Found" );
         }
