@@ -8,14 +8,14 @@ public class FormEvent extends EventObject {
 	private double capacity;
 	private long exp;
 	private long toNextLevel;
-    private int health;
-    private int mana;
+  private int health;
+  private int mana;
 	private double currency;
-    private int strength;
-    private int stamina;
-    private int intelligence;
-    private int will;
-    private int playerClass;
+  private int strength;
+  private int stamina;
+  private int intelligence;
+  private int will;
+  private int playerClass;
 
 	public FormEvent(Object source) {
 		super(source);

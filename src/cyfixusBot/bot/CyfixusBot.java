@@ -38,9 +38,9 @@ public class CyfixusBot extends PircBot implements ActionListener{
 		this.isConnected();
 
 		Timer timer = new Timer(1000, this);
-        timer.setInitialDelay(0);
-        timer.start();
-        populateUsers();
+    timer.setInitialDelay(0);
+    timer.start();
+    populateUsers();
 	}
 	
 	public void populateUsers(){
@@ -101,104 +101,103 @@ public class CyfixusBot extends PircBot implements ActionListener{
 
 	public void onMessage(String channel, String sender, String login, 
 			                  String hostname, String input){
-		    Player player = new Player(0, 0, ObjectID.Player, sender);
-		    Player targetPlayer = new Player(0, 0, ObjectID.Player, "dummy");
-		    String message = input.toLowerCase();
-		    String command = message;
-		    String target = " ";
-		    String target2 = " ";
-		    String change = " ";
-		    StringBuilder changeBuild = new StringBuilder();
-		    if(message.charAt(0) == '!'){
-			    try{
-				    String splitMessage[] = message.split(" ");
-				    command = splitMessage[0];
-				    target = splitMessage[1];
-				    target2 = splitMessage[2];
-				    for(int i = 3; i < splitMessage.length; i++){
-				    	changeBuild.append(splitMessage[i]);
-				    	try{
-					    		if(splitMessage[i].charAt(0) >= '0' && 
-					    			splitMessage[i].charAt(0) < '9'){
-					    		break;
-					    	}
-					    	else
-					    	{
-					    		changeBuild.append(' ');
-					    	}
-				    	}catch(Exception e){};
-				    }
-				    change = changeBuild.toString();
-			    }catch(Exception e){
-//			    	e.printStackTrace();
-			    }
-			    
-			    switch(command){
-			        case "!yo":
-			        	sendMessage(channel, "Yo " + sender + "!");
-			        	break;
-				    case "!join":
-				    	join(channel, sender, player);
-				    	break;
-				    case "!users":
-				    	cyPrinters.printUsers(channel, users);
-				    	stringListener.textEmitted(getAllPlayers());
-				    	break;
-				    case "!stats":
-				    	if(users.contains(player)){
-							cyPrinters.printStats(channel, sender, users);
-							stringListener.textEmitted("whispering " + sender + "'s stats\n");
-				    	}
-				    	
-				    	break;
-				    case "!set":
-				    	targetPlayer = users.getPlayer(target);
-				    	if(sender.equals("cyfixus")){
-				    		set(channel, sender, target2, targetPlayer, 
-				    				change);
-				    	}
-				    	stringListener.textEmitted("setting " + target + "'s stats\n");
-				    	break;
-				    case "!autojoin":
-				    	targetPlayer = users.getPlayer(target);
-				    	if(sender.equals("cyfixus")){
-				    		autoJoin();
-				    	}
-				    	stringListener.textEmitted("autojoin\n");
-				    	break;
-				    case "!abandon":
-				    	player = users.getPlayer(sender);
-				    	if(users.contains(player)){
-								users.removePlayer(sender);
-								cyPrinters.privateMessage(channel, sender, 
-										                  "Goodbye " + sender);	
-							}
-				    	stringListener.textEmitted("Goodbye " + sender + '\n');
-				    	break;
-				    case "!lotto":
-				    	player = users.getPlayer(sender);
-				    	lotto(channel, sender, player);
-				    	break;
-				    case "!stat":
-				    	player = users.getPlayer(sender);
-				    	stat(channel, sender, target, player);
-				    	break;
-				    case "!battle":
-				    	player = users.getPlayer(sender);
-				    	targetPlayer = users.getPlayer(target);
-				    	battle(channel, player, targetPlayer, stringListener);
-				    	break;
-				    case "!title":
-				    	player = users.getPlayer(sender);
-				    	sendMessage(channel, player.getName() + ": " + 
-				    	                player.getTitle());
-				    	stringListener.textEmitted(player.getName() + ": " + 
-				    	                player.getTitle());
-				    	break;
-			    }
+
+    Player player = new Player(0, 0, ObjectID.Player, sender);
+    Player targetPlayer = new Player(0, 0, ObjectID.Player, "dummy");
+    String message = input.toLowerCase();
+    String command = message;
+    String target = " ";
+    String target2 = " ";
+    String change = " ";
+    StringBuilder changeBuild = new StringBuilder();
+    if(message.charAt(0) == '!'){
+	    try{
+		    String splitMessage[] = message.split(" ");
+		    command = splitMessage[0];
+		    target = splitMessage[1];
+		    target2 = splitMessage[2];
+		    for(int i = 3; i < splitMessage.length; i++){
+		    	changeBuild.append(splitMessage[i]);
+		    	try{
+			    		if(splitMessage[i].charAt(0) >= '0' && 
+			    			splitMessage[i].charAt(0) < '9'){
+			    		break;
+			    	}
+			    	else
+			    	{
+			    		changeBuild.append(' ');
+			    	}
+		    	}catch(Exception e){};
 		    }
-		    
-		    
+		    change = changeBuild.toString();
+	    }catch(Exception e){
+//			    	e.printStackTrace();
+	    }
+	    
+	    switch(command){
+	      case "!yo":
+	        	sendMessage(channel, "Yo " + sender + "!");
+	        	break;
+		    case "!join":
+		    	join(channel, sender, player);
+		    	break;
+		    case "!users":
+		    	cyPrinters.printUsers(channel, users);
+		    	stringListener.textEmitted(getAllPlayers());
+		    	break;
+		    case "!stats":
+		    	if(users.contains(player)){
+					cyPrinters.printStats(channel, sender, users);
+					stringListener.textEmitted("whispering " + sender + "'s stats\n");
+		    	}
+		    	
+		    	break;
+		    case "!set":
+		    	targetPlayer = users.getPlayer(target);
+		    	if(sender.equals("cyfixus")){
+		    		set(channel, sender, target2, targetPlayer, 
+		    				change);
+		    	}
+		    	stringListener.textEmitted("setting " + target + "'s stats\n");
+		    	break;
+		    case "!autojoin":
+		    	targetPlayer = users.getPlayer(target);
+		    	if(sender.equals("cyfixus")){
+		    		autoJoin();
+		    	}
+		    	stringListener.textEmitted("autojoin\n");
+		    	break;
+		    case "!abandon":
+		    	player = users.getPlayer(sender);
+		    	if(users.contains(player)){
+						users.removePlayer(sender);
+						cyPrinters.privateMessage(channel, sender, 
+								                  "Goodbye " + sender);	
+					}
+		    	stringListener.textEmitted("Goodbye " + sender + '\n');
+		    	break;
+		    case "!lotto":
+		    	player = users.getPlayer(sender);
+		    	lotto(channel, sender, player);
+		    	break;
+		    case "!stat":
+		    	player = users.getPlayer(sender);
+		    	stat(channel, sender, target, player);
+		    	break;
+		    case "!battle":
+		    	player = users.getPlayer(sender);
+		    	targetPlayer = users.getPlayer(target);
+		    	battle(channel, player, targetPlayer, stringListener);
+		    	break;
+		    case "!title":
+		    	player = users.getPlayer(sender);
+		    	sendMessage(channel, player.getName() + ": " + 
+		    	                player.getTitle());
+		    	stringListener.textEmitted(player.getName() + ": " + 
+		    	                player.getTitle());
+		    	break;
+	    }
+    }  
 		save();
 	}
 	
@@ -262,143 +261,147 @@ public class CyfixusBot extends PircBot implements ActionListener{
 	
 	public void stat(String channel, String sender, String target, 
 			             Player player){
+
 		if(users.contains(player)){
-    		StatEnum statEnum;
-    		if(target != " "){
-    		    switch(target){
-    		         case "title":
-    		        	 statEnum = StatEnum.TITLE;
-    		        	 break;
-	    		     case "health":
-	    		    	 statEnum = StatEnum.HEALTH;
-	    		    	 break;
-	    		     case "mana":
-	    		    	 statEnum = StatEnum.MANA;
-	    		    	 break;
-	    		     case "level":
-	    		         statEnum = StatEnum.LEVEL;
-	    		         break;
-	    		     case "exp":
-	    		    	 statEnum = StatEnum.EXP;
-	    		    	 break;
-	    		     case "tonextlevel":
-	    		     	 statEnum = StatEnum.TONEXTLEVEL;
-	    		     	 break;
-	    		     case "currency":
-	    		    	 statEnum = StatEnum.CURRENCY;
-	    		    	 break;
-	    		     case "capacity":
-	    		    	 statEnum = StatEnum.CAPACITY;
-	    		    	 break;
-	    		     case "strength":
-	    		    	 statEnum = StatEnum.STRENGTH;
-	    		    	 break;
-	    		     case "stamina":
-	    		    	 statEnum = StatEnum.STAMINA;
-	    		    	 break;
-	    		     case "intelligence":
-	    		    	 statEnum = StatEnum.INTELLIGENCE;
-	    		    	 break;
-	    		     case "will":
-	    		    	 statEnum = StatEnum.WILL;
-	    		    	 break;
-	    		     default:
-	    		    	 statEnum = StatEnum.NAME;
-	    		    	 break;
-    		    }
-    		cyPrinters.playerStat(channel, sender, player, statEnum);
-    	    }
-        }
+  		StatEnum statEnum;
+  		if(target != " "){
+		    switch(target){
+	        case "title":
+	          statEnum = StatEnum.TITLE;
+	          break;
+		      case "health":
+		    	  statEnum = StatEnum.HEALTH;
+		    	  break;
+		      case "mana":
+		    	  statEnum = StatEnum.MANA;
+		    	  break;
+		      case "level":
+		        statEnum = StatEnum.LEVEL;
+		        break;
+		      case "exp":
+		    	  statEnum = StatEnum.EXP;
+		    	  break;
+		      case "tonextlevel":
+		     	  statEnum = StatEnum.TONEXTLEVEL;
+		     	  break;
+		      case "currency":
+		    	  statEnum = StatEnum.CURRENCY;
+		    	  break;
+		      case "capacity":
+		    	  statEnum = StatEnum.CAPACITY;
+		    	  break;
+		      case "strength":
+		     	  statEnum = StatEnum.STRENGTH;
+		        break;
+		      case "stamina":
+		    	  statEnum = StatEnum.STAMINA;
+		    	  break;
+		      case "intelligence":
+		    	  statEnum = StatEnum.INTELLIGENCE;
+		    	  break;
+		      case "will":
+		    	  statEnum = StatEnum.WILL;
+		    	  break;
+		      default:
+		    	  statEnum = StatEnum.NAME;
+		    	  break;
+		    }
+  		cyPrinters.playerStat(channel, sender, player, statEnum);
+      }
+    }
 	}
 	
 	public void set(String channel, String sender, String target, 
 			            Player targetPlayer, String change){
 		if(users.contains(targetPlayer)){
-    		StatEnum statEnum;
-    		if(target != " "){
-    		    switch(target){
-    		         case "title":
-    		    	     statEnum = StatEnum.TITLE;
-    		    	     break;
-	    		     case "health":
-	    		    	 statEnum = StatEnum.HEALTH;
-	    		    	 break;
-	    		     case "mana":
-	    		    	 statEnum = StatEnum.MANA;
-	    		    	 break;
-	    		     case "level":
-	    		         statEnum = StatEnum.LEVEL;
-	    		         break;
-	    		     case "exp":
-	    		    	 statEnum = StatEnum.EXP;
-	    		    	 break;
-	    		     case "tonextlevel":
-	    		     	 statEnum = StatEnum.TONEXTLEVEL;
-	    		     	 break;
-	    		     case "currency":
-	    		    	 statEnum = StatEnum.CURRENCY;
-	    		    	 break;
-	    		     case "capacity":
-	    		    	 statEnum = StatEnum.CAPACITY;
-	    		    	 break;
-	    		     case "strength":
-	    		    	 statEnum = StatEnum.STRENGTH;
-	    		    	 break;
-	    		     case "stamina":
-	    		    	 statEnum = StatEnum.STAMINA;
-	    		    	 break;
-	    		     case "intelligence":
-	    		    	 statEnum = StatEnum.INTELLIGENCE;
-	    		    	 break;
-	    		     case "will":
-	    		    	 statEnum = StatEnum.WILL;
-	    		    	 break;
-	    		     default:
-	    		    	 statEnum = StatEnum.NAME;
-	    		    	 break;
-    		    }
-    		cyPrinters.playerSet(channel, sender, change, targetPlayer, 
-    				                 statEnum);
-    	    }
-        }
+			StatEnum statEnum;
+			if(target != " "){
+		    switch(target){
+		      case "title":
+		    	  statEnum = StatEnum.TITLE;
+		    	  break;
+  		    case "health":
+  		    	statEnum = StatEnum.HEALTH;
+  		    	break;
+  		    case "mana":
+  		      statEnum = StatEnum.MANA;
+  		      break;
+  		    case "level":
+  		      statEnum = StatEnum.LEVEL;
+  		      break;
+  		    case "exp":
+  		    	statEnum = StatEnum.EXP;
+  		      break;
+  		    case "tonextlevel":
+  		     	statEnum = StatEnum.TONEXTLEVEL;
+  		     	break;
+  		    case "currency":
+  		    	statEnum = StatEnum.CURRENCY;
+  		    	break;
+  		    case "capacity":
+  		    	statEnum = StatEnum.CAPACITY;
+  		    	break;
+  		    case "strength":
+  		    	statEnum = StatEnum.STRENGTH;
+  		    	break;
+  		    case "stamina":
+  		    	statEnum = StatEnum.STAMINA;
+  		    	break;
+  		    case "intelligence":
+  		    	statEnum = StatEnum.INTELLIGENCE;
+  		    	break;
+  		    case "will":
+  		    	statEnum = StatEnum.WILL;
+  		    	break;
+  		    default:
+  		    	statEnum = StatEnum.NAME;
+  		    	break;
+		    }
+			cyPrinters.playerSet(channel, sender, change, targetPlayer, 
+					                 statEnum);
+		  }
+	  }
 	}
+
 	public void battle(String channel, Player player, Player targetPlayer, 
 			           StringListener stringListener){
+
 		if(users.contains(player) && users.contains(targetPlayer)){
-    		Battle battle = new Battle(player, targetPlayer, this, channel, stringListener);
-    		int winner = battle.getWinner();
-    		String winnerName = " ";
-    		String expOutcome = " ";
-    		if(winner == 0){
-    			winnerName = player.getName() + " wins the battle!";
-    			grantExp(player, 1);
-    			expOutcome = "" + player.getExp();
-    		}
-    		else if(winner == 1){
-    			winnerName = targetPlayer.getName() + " wins the battle!";
-    			grantExp(targetPlayer, 1);
-    			expOutcome = "" + targetPlayer.getExp();
-    		}
-    		else if(winner != 1 && winner != 0){
-    			winnerName = "draw";
-    		}
-    		sendMessage(channel, winnerName);
-    		cyPrinters.privateMessage(channel, winnerName, 
-    				                  " +1 exp: " + expOutcome);
-    		stringListener.textEmitted(winnerName + '\n');
+  		Battle battle = new Battle(player, targetPlayer, this, channel, stringListener);
+  		int winner = battle.getWinner();
+  		String winnerName = " ";
+  		String expOutcome = " ";
+  		if(winner == 0){
+  			winnerName = player.getName() + " wins the battle!";
+  			grantExp(player, 1);
+  			expOutcome = "" + player.getExp();
+  		}
+  		else if(winner == 1){
+  			winnerName = targetPlayer.getName() + " wins the battle!";
+  			grantExp(targetPlayer, 1);
+  			expOutcome = "" + targetPlayer.getExp();
+  		}
+  		else if(winner != 1 && winner != 0){
+  			winnerName = "draw";
+  		}
+  		sendMessage(channel, winnerName);
+  		cyPrinters.privateMessage(channel, winnerName, 
+  				                  " +1 exp: " + expOutcome);
+  		stringListener.textEmitted(winnerName + '\n');
 		}
 	}
 	public void onNotice(String sourceNick, String sourceLogin, 
 			String sourceHostname, String target, String notice){
+
 		System.out.println("sourceNick: " + sourceNick + " sourceLogin: " + 
 			sourceLogin + " sourceHostname: " +  sourceHostname + " target: " +
 				target + " notice: " + notice);
 	}
 	public void resetUserTickets(){
-    	for(Player player: users.getPlayers()){
-    		player.resetTickets();
-    	}
+    for(Player player: users.getPlayers()){
+    	player.resetTickets();
     }
+  }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

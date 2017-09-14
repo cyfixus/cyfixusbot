@@ -61,15 +61,15 @@ public class Player extends Avatar{
     private void writeObject(ObjectOutputStream o)
     	    throws IOException {  
     	    
-    	    o.defaultWriteObject();  
-    	    o.writeObject(getName());
+    	o.defaultWriteObject();  
+    	o.writeObject(getName());
     }
     	  
     private void readObject(ObjectInputStream o)
     	    throws IOException, ClassNotFoundException {
     	    
-    	    o.defaultReadObject();
-    	    name = (String) o.readObject();
+    	o.defaultReadObject();
+    	name = (String) o.readObject();
     }
 
 

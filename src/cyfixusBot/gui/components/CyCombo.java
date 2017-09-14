@@ -12,9 +12,9 @@ public class CyCombo extends JComboBox {
 		super();
 		setFont();
 		setBackground(new Color(7));
-    	setFont(font);
-    	setSelectionBackground(new Color(3476));
-    	setForeground(new Color(0xffff00ff));
+  	setFont(font);
+  	setSelectionBackground(new Color(3476));
+  	setForeground(new Color(0xffff00ff));
 	}
 		
 	private void setSelectionBackground(Color color) {

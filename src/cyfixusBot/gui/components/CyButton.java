@@ -9,13 +9,13 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 
 public class CyButton extends JButton {
-    private Font font;
+  private Font font;
     
 	public CyButton(String text){
 		super(text);
 		setFont();
 		setBackground(new Color(7));
-    	setFont(font);
+    setFont(font);
 		
 	}
 	

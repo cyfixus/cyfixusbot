@@ -11,8 +11,9 @@ import cyfixusBot.gui.AlertPanel;
 import cyfixusBot.gui.components.CyLabel;
 
 public class WinnerPanel extends AlertPanel implements ActionListener{
-    private int i = 0;
-    private int time = 0;
+  private int i = 0;
+  private int time = 0;
+
 	public WinnerPanel(String message, String alert) {
 		super(message, alert);
 		Timer timer = new Timer(400, this);
@@ -78,10 +79,6 @@ public class WinnerPanel extends AlertPanel implements ActionListener{
 		messageFont = messageFont.deriveFont(attributes);
 	}
 
-	
-	
-	
-	
 	public void setAlertFont2(){
 		this.alertFont = this.getFont();
 		attributes = this.alertFont.getAttributes();

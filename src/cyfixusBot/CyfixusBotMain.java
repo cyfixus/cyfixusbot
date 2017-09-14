@@ -15,7 +15,7 @@ public class CyfixusBotMain {
     			mainFrame.setIconImage(new ImageIcon("ico.png").getImage());
     			mainFrame.setVisible(true);
     		}
-    	  });
+    	});
         
     }
 

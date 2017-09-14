@@ -18,7 +18,6 @@ public class TicketFrame extends JFrame implements ActionListener{
 	private Map attributes;
 	private TicketPanel ticketPanel;
 	private int time;
-
 	
 	public TicketFrame(){
 		super("Ticket");
@@ -31,13 +30,14 @@ public class TicketFrame extends JFrame implements ActionListener{
 		ticketPanel = new TicketPanel(sender);
 		add(ticketPanel);
 		setSize(300, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocation(2600, 400);
-        setAlwaysOnTop(true);
-        
-        Timer timer = new Timer(1000, this);
-        timer.setInitialDelay(0);
-        timer.start();
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocation(2600, 400);
+    setAlwaysOnTop(true);
+    
+    Timer timer = new Timer(1000, this);
+    timer.setInitialDelay(0);
+    timer.start();
+    
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -47,8 +47,5 @@ public class TicketFrame extends JFrame implements ActionListener{
 			dispose();
 		}
 	}
-	
-	
-	
-	
+
 }

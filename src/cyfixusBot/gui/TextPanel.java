@@ -20,9 +20,9 @@ public class TextPanel extends JPanel{
 	
 	public TextPanel(){
 		Dimension dim = getPreferredSize();
-    	dim.width = 300;
-    	dim.height = 250;
-    	setPreferredSize(dim);
+  	dim.width = 300;
+  	dim.height = 250;
+  	setPreferredSize(dim);
 		
 		textArea = new JTextArea();
 		textArea.setBackground(new Color(3));

@@ -13,9 +13,9 @@ public class CyList extends JList {
 		super();
 		setFont();
 		setBackground(new Color(7));
-    	setFont(font);
-    	setSelectionBackground(new Color(3476));
-    	setSelectionForeground(new Color(0xffff00ff));
+  	setFont(font);
+  	setSelectionBackground(new Color(3476));
+  	setSelectionForeground(new Color(0xffff00ff));
 	}
 		
 	public void setFont(){

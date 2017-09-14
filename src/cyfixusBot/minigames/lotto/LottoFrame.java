@@ -24,8 +24,6 @@ public class LottoFrame extends JFrame implements ActionListener{
 	protected int time;
 	protected int duration;
 	
-	           
-	
 	public LottoFrame(){
 		super();
 	}
@@ -39,13 +37,14 @@ public class LottoFrame extends JFrame implements ActionListener{
 		alertPanel = new AlertPanel(message, alert);
 		add(alertPanel);
 		setSize(300, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocation(2600, 400);
-        setAlwaysOnTop(true);
-        setUndecorated(true);
-        Timer timer = new Timer(1000, this);
-        timer.setInitialDelay(0);
-        timer.start();
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLocation(2600, 400);
+    setAlwaysOnTop(true);
+    setUndecorated(true);
+
+    Timer timer = new Timer(1000, this);
+    timer.setInitialDelay(0);
+    timer.start();
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -61,8 +60,5 @@ public class LottoFrame extends JFrame implements ActionListener{
 		add(alertPanel);
 		repaint();
 	}
-		
-		
-		
-		
+
 }

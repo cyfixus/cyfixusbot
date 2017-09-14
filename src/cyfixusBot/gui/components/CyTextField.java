@@ -14,7 +14,7 @@ public class CyTextField extends JTextField {
 		super(width);
 		setFont();
 		setBackground(new Color(7));
-    	setFont(font);
+    setFont(font);
 	}
 		
 	public void setFont(){

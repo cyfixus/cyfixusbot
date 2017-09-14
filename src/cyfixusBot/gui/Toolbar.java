@@ -60,28 +60,22 @@ public class Toolbar extends JPanel implements ActionListener{
 		
 		setLayout(new GridBagLayout());
     	
-    	GridBagConstraints gc = new GridBagConstraints();
+    GridBagConstraints gc = new GridBagConstraints();
  //                       -   -  COL 1   	
-        gc.weightx = 0;
-    	gc.gridx = 0;
-    	gc.gridy = 0;
-    	gc.fill = GridBagConstraints.NONE;
-    	gc.anchor = GridBagConstraints.LINE_START;
-    	add(autoJoin, gc);
-    	gc.gridx++;
-    	gc.weightx = 3;
-    	add(getUsers, gc);
-    	gc.weightx = 0;
-    	gc.gridx++;
-    	add(prefButton, gc);
-//    	
-//		setLayout(new FlowLayout(FlowLayout.LEFT));
-//		
-//		add(autoJoin);
-//		add(getUsers);
-//		add(prefButton);
+    gc.weightx = 0;
+  	gc.gridx = 0;
+  	gc.gridy = 0;
+  	gc.fill = GridBagConstraints.NONE;
+  	gc.anchor = GridBagConstraints.LINE_START;
+  	add(autoJoin, gc);
+  	gc.gridx++;
+  	gc.weightx = 3;
+  	add(getUsers, gc);
+  	gc.weightx = 0;
+  	gc.gridx++;
+  	add(prefButton, gc);
 	  
-    }
+  }
 	
 	public void setConnectionIcon(int index){
 		String icon = "";
@@ -125,27 +119,27 @@ public class Toolbar extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-        JButton clicked = (JButton)e.getSource();
-        if(clicked == autoJoin){
-        	if(textListener != null){
-        		textListener.textEmitted("autojoin\n");
-        	}
-        	if(cyButtonListener != null){
-        		cyButtonListener.cyButtonClicked("autojoin");
-        	}
-        }
-        else if(clicked == getUsers){
-        	if(textListener != null){
-        		textListener.textEmitted("getusers\n");
-        	}
-        	if(cyButtonListener != null){
-        		cyButtonListener.cyButtonClicked("getusers");
-        	}
-        }
-        else if(clicked == prefButton){
-        	prefsDialog.setVisible(true);
-        	prefsDialog.passButton(prefButton);
-        }
+    JButton clicked = (JButton)e.getSource();
+    if(clicked == autoJoin){
+    	if(textListener != null){
+    		textListener.textEmitted("autojoin\n");
+    	}
+    	if(cyButtonListener != null){
+    		cyButtonListener.cyButtonClicked("autojoin");
+    	}
+    }
+    else if(clicked == getUsers){
+    	if(textListener != null){
+    		textListener.textEmitted("getusers\n");
+    	}
+    	if(cyButtonListener != null){
+    		cyButtonListener.cyButtonClicked("getusers");
+    	}
+    }
+    else if(clicked == prefButton){
+    	prefsDialog.setVisible(true);
+    	prefsDialog.passButton(prefButton);
+    }
 	}
 	
 	public void setFont(){

@@ -14,7 +14,7 @@ public class CyPasswordField extends JPasswordField {
 		super(width);
 		setFont();
 		setBackground(new Color(7));
-    	setFont(font);
+    setFont(font);
 	}
 		
 	public void setFont(){
