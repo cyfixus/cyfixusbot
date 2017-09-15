@@ -36,9 +36,17 @@ public class MainFrame extends JFrame{
   private Player player;
   private PrefsDialog prefsDialog;
   private Preferences prefs;
+  private boolean extended;
 
-  public MainFrame(){
+  public MainFrame(int extended){
     super("cyfixusbot");
+    if(extended == 1){
+    	this.extended = true;
+    }
+    else
+    {
+    	this.extended = false;
+    }
     prefsDialog = new PrefsDialog(this);
     prefs = Preferences.userRoot().node("db");
     prefsDialog.setPrefsListener(new PrefsListener() {
@@ -100,7 +108,7 @@ public class MainFrame extends JFrame{
         textPanel.updateView();
         String[] splitText = text.split(" ");
         if(splitText[0].equals("Welcome")){
-          AlertFrame welcome = new AlertFrame(splitText[1], "welcome", 5);
+          AlertFrame welcome = new AlertFrame(splitText[1], "welcome", 5, extended);
           welcome.setVisible(true);
         }
       }  
@@ -113,7 +121,7 @@ public class MainFrame extends JFrame{
 
           @Override
           protected Void doInBackground() throws Exception {
-            AlertFrame lotto = new AlertFrame(sender, "ticket", 3);
+            AlertFrame lotto = new AlertFrame(sender, "ticket", 3, extended);
             lotto.setVisible(true);
             return null;
           }
@@ -121,7 +129,7 @@ public class MainFrame extends JFrame{
         worker.execute();
       }
       public void announceWinner(String winner) {
-        AlertFrame lotto = new AlertFrame(winner, "winner", 5);
+        AlertFrame lotto = new AlertFrame(winner, "winner", 5, extended);
         lotto.resize(500, 300);
         lotto.setPanel(new WinnerPanel(winner, "Winner"));
         lotto.setVisible(true);

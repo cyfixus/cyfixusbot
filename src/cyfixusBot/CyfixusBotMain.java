@@ -60,13 +60,13 @@ public class CyfixusBotMain implements ActionListener{
     };
 
     public static void main(String[] args) throws Exception {
-      System.out.println(args.length>1?args[1]:"no args");
+      int extended = args.length > 1?Integer.parseInt(args[1]):0;
       CyfixusBotMain splash = new CyfixusBotMain();
       SwingUtilities.invokeLater(new Runnable(){
         public void run(){
-          MainFrame mainFrame = new MainFrame(); 
+          MainFrame mainFrame = new MainFrame(extended); 
           mainFrame.setIconImage(new ImageIcon("ico.png").getImage());
-          showOnScreen(args.length > 1?Integer.parseInt(args[1]):0, (JFrame)mainFrame);
+          showOnScreen(extended, (JFrame)mainFrame);
           mainFrame.setVisible(true);
         }
       });

@@ -21,6 +21,7 @@ public class AlertFrame extends JFrame implements ActionListener{
   protected AlertPanel alertPanel;
   protected int time;
   protected int duration;
+  protected boolean extended;
   
   
   
@@ -29,9 +30,10 @@ public class AlertFrame extends JFrame implements ActionListener{
     setFocusableWindowState(false);
   }
   
-  public AlertFrame(String message, String alert, int duration){
+  public AlertFrame(String message, String alert, int duration, boolean extended){
     super();
     setFocusableWindowState(false);
+    this.extended = extended;
     this.message = message;
     this.alert = alert;
     this.duration = duration;
@@ -39,7 +41,11 @@ public class AlertFrame extends JFrame implements ActionListener{
     add(alertPanel);
     setSize(300, 300);
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    setLocation(2600, 400);
+    if(extended){
+    	setLocation(2600, 400);
+    }else{
+    	setLocationRelativeTo(null);
+    }
     setAlwaysOnTop(true);
     setUndecorated(true);
     Timer timer = new Timer(1000, this);
