@@ -60,12 +60,13 @@ public class CyfixusBotMain implements ActionListener{
     };
 
     public static void main(String[] args) throws Exception {
+      System.out.println(args.length>1?args[1]:"no args");
       CyfixusBotMain splash = new CyfixusBotMain();
       SwingUtilities.invokeLater(new Runnable(){
         public void run(){
           MainFrame mainFrame = new MainFrame(); 
           mainFrame.setIconImage(new ImageIcon("ico.png").getImage());
-          showOnScreen(1, (JFrame)mainFrame);
+          showOnScreen(args.length > 1?Integer.parseInt(args[1]):0, (JFrame)mainFrame);
           mainFrame.setVisible(true);
         }
       });
@@ -75,14 +76,17 @@ public class CyfixusBotMain implements ActionListener{
     public static void showOnScreen( int screen, JFrame frame ) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] gd = ge.getScreenDevices();
-        if( screen > -1 && screen < gd.length ) {
-            frame.setLocation((gd[screen].getDefaultConfiguration().getBounds().width) - frame.getWidth()/2
+        switch(screen) {
+          case 0:
+            frame.setLocation((gd[screen].getDefaultConfiguration().getBounds().width) - frame.getWidth()
             		, gd[screen].getDefaultConfiguration().getBounds().y);
-        } else if( gd.length > 0 ) {
-            frame.setLocation((gd[0].getDefaultConfiguration().getBounds().width) - frame.getWidth()/2
-            		, gd[0].getDefaultConfiguration().getBounds().y);
-        } else {
-            throw new RuntimeException( "No Screens Found" );
+            break;
+          case 1:
+            frame.setLocation((gd[screen].getDefaultConfiguration().getBounds().width*2) - frame.getWidth()/2
+            		, gd[screen].getDefaultConfiguration().getBounds().y);
+            break;
+          default:
+            break;
         }
     }
 

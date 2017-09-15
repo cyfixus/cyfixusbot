@@ -60,6 +60,8 @@ public class PrefsDialog extends JDialog{
     
     channelField = new CyTextField(24);
     oauthField = new CyPasswordField(24);
+    channelField.setMinimumSize(channelField.getPreferredSize());
+    oauthField.setMinimumSize(oauthField.getPreferredSize());
     
     layoutControls();
     
