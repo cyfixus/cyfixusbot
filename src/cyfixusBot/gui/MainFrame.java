@@ -110,6 +110,9 @@ public class MainFrame extends JFrame{
         if(splitText[0].equals("Welcome")){
           AlertFrame welcome = new AlertFrame(splitText[1], "welcome", 5, extended);
           welcome.setVisible(true);
+        }else if(splitText[0].equals("Roll")){
+        	AlertFrame roll = new AlertFrame(splitText[2], splitText[1], 3, extended);
+        	roll.setVisible(true);
         }
       }  
     });

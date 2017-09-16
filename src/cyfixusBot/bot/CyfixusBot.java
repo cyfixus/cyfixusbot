@@ -16,6 +16,7 @@ import cyfixusBot.game.players.Player;
 import cyfixusBot.game.players.StatEnum;
 import cyfixusBot.game.players.Users;
 import cyfixusBot.minigames.Battle;
+import cyfixusBot.minigames.CyDie;
 import cyfixusBot.minigames.lotto.Lotto;
 import cyfixusBot.util.CyPrinters;
 import cyfixusBot.util.DataManager;
@@ -152,6 +153,17 @@ public class CyfixusBot extends PircBot implements ActionListener{
           }
           
           break;
+        case "!roll":
+        	if(users.contains(player)){
+        		System.out.println("t2: " + target2);
+        		if(target2 == " "){
+        			System.out.println("no t2");
+        			roll(player, Integer.parseInt(target));
+        		}else{
+        			roll(player, Integer.parseInt(target), Integer.parseInt(target2));
+        		}
+        	}
+        	break;
         case "!set":
           targetPlayer = users.getPlayer(target);
           if(sender.equals("cyfixus")){
@@ -199,6 +211,28 @@ public class CyfixusBot extends PircBot implements ActionListener{
       }
     }  
     save();
+  }
+  
+  public void roll(Player player, int sides){
+	  CyDie cyDie = new CyDie(sides);
+	  int roll = cyDie.roll();
+	  sendMessage(channel, player.getName() + " rolled: " + roll);
+	  stringListener.textEmitted("Roll " + player.getName() + " " + roll + "\n");
+  }
+  
+  public void roll(Player player, int sides, int quantity){
+	  CyDie cyDie = new CyDie(sides);
+	  int rolls[] = cyDie.roll(quantity);
+	  String name = player.getName();
+	  String rolled = "";
+	  int i = 0;
+	  for(; i < quantity-1; i++){
+		  rolled += rolls[i] + "-"; 
+	  }
+	  rolled += rolls[i];
+	  sendMessage(channel, name + " rolled: " + rolled);
+	  stringListener.textEmitted("Roll " + name + " " + rolled + " \n");
+	  
   }
   
   public void save(){
